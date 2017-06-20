@@ -15,7 +15,7 @@ public abstract class Employee {
     public abstract String getName();
     public abstract void setJobTitle(String job);
     public abstract String getJobTitle();
-    //public abstract void setBiweeklyPay(double hourly, double numHoursWorked);
-    //public abstract double getBiweeklyPay();
+    public abstract void setEmployeeID(int ID);
+    public abstract String getEmployeeID();
     
 }

@@ -13,12 +13,14 @@ public class FullTimeEmployee extends Employee{
     
     private String empName;
     private String jobTitle;
+    private String empID;
     private double salary;
     private double biweeklyPay;
     
     public FullTimeEmployee(){
         empName = "";
         jobTitle = "";
+        empID = "";
         salary = 0.00;
         biweeklyPay = 0.00;
     }
@@ -41,6 +43,16 @@ public class FullTimeEmployee extends Employee{
     @Override
     public String getJobTitle() {
         return jobTitle;
+    }
+    
+    @Override
+    public void setEmployeeID(int ID) {
+        empID = "FT-" + ID;
+    }
+
+    @Override
+    public String getEmployeeID() {
+        return empID;
     }
     
     public void setSalary(double sal){

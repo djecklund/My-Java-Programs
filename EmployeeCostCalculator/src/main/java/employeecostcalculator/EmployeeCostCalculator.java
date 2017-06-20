@@ -26,6 +26,10 @@ public class EmployeeCostCalculator extends javax.swing.JFrame {
     ArrayList<PartTimeEmployee> ptEmployee;
     DecimalFormat money;
     
+    // Creating the variables to hold the unique part of the employeeID
+    int numPT;
+    int numFT;
+    
     public EmployeeCostCalculator() {
         initComponents();
         
@@ -39,6 +43,9 @@ public class EmployeeCostCalculator extends javax.swing.JFrame {
         ptEmployee = new ArrayList<>();
         
         money = new DecimalFormat("$###,##0.00");
+        
+        numPT = 0;
+        numFT = 0;
         
     }
 
@@ -623,16 +630,20 @@ public class EmployeeCostCalculator extends javax.swing.JFrame {
             
             // If you are creating a part time employee
             if(partTimeRB.isSelected()){
+                numPT += 1;
                 pt.setName(empNameTF.getText());
                 pt.setJobTitle(empJobTitleTF.getText());
+                pt.setEmployeeID(numPT);
                 pt.setHourlyPay(Double.parseDouble(empHourSalTF.getText()));
                 pt.setHoursWorked(Integer.parseInt(empHoursWorkedTF.getText()));
                 pt.setBiweeklyPay(Double.parseDouble(empHourSalTF.getText()), Integer.parseInt(empHoursWorkedTF.getText()));
                 
                 ptEmployee.add(pt);
                 
+                // Update all tables, lists and labels with new employee information
                 updateEverything();
                 
+                // resets all textfields
                 empNameTF.setText("");
                 empJobTitleTF.setText("");
                 empHourSalTF.setText("");
@@ -642,8 +653,10 @@ public class EmployeeCostCalculator extends javax.swing.JFrame {
             
             // If you are creating a full time employee
             if(fullTimeRB.isSelected()){
+                numFT += 1;
                 ft.setName(empNameTF.getText());
                 ft.setJobTitle(empJobTitleTF.getText());
+                ft.setEmployeeID(numFT);
                 ft.setSalary(Double.parseDouble(empHourSalTF.getText()));
                 ft.setBiweeklyPay(Double.parseDouble(empHourSalTF.getText()));
                 
@@ -669,19 +682,49 @@ public class EmployeeCostCalculator extends javax.swing.JFrame {
 
     private void employeeListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_employeeListValueChanged
         
-//        for(int i = 0; i < ptEmployee.size(); i++){
-//            
-//            if(employeeList.getSelectedValue().equals(ptEmployee.get(i).getName())){
-//                employeeTextPane.setText("Name : " + ptEmployee.get(i).getName() + "\n"
-//                + "Job Title: " + ptEmployee.get(i).getJobTitle() + "\n"
-//                + "Employee Status: " + "Part time" + "\n" 
-//                        + "Hourly Pay: " + money.format(ptEmployee.get(i).getHourlyPay()) + "\n"
-//                + "Biweekly Pay: " + money.format(ptEmployee.get(i).getBiweeklyPay()) + "\n"
-//                + "Monthly Pay: " + money.format(ptEmployee.get(i).getBiweeklyPay() * 2) + "\n"
-//                + "Annual Pay: " + money.format(ptEmployee.get(i).getBiweeklyPay() * 26));
-//            }
-//            
-//        }
+        // This is a measure taken to prevent a null pointer exception from occuring
+        // Everytime the employee list is updated, the selected index goes to -1 because
+        // the list is emptied and then updated with the new information.
+        if(employeeList.getSelectedIndex() > -1){
+            
+            // Search through part time employees to find the selected employee's 
+            // information.
+            for(int i = 0; i < ptEmployee.size(); i++){
+            
+                if(employeeList.getSelectedValue().equals(ptEmployee.get(i).getEmployeeID())){
+                    employeeTextPane.setText("Name : " + ptEmployee.get(i).getName() + "\n"
+                    + "Job Title: " + ptEmployee.get(i).getJobTitle() + "\n"
+                    + "Employee Status: " + "Part time" + "\n" 
+                            + "Hourly Pay: " + money.format(ptEmployee.get(i).getHourlyPay()) + "\n"
+                    + "Biweekly Pay: " + money.format(ptEmployee.get(i).getBiweeklyPay()) + "\n"
+                    + "Monthly Pay: " + money.format(ptEmployee.get(i).getBiweeklyPay() * 2) + "\n"
+                    + "Annual Pay: " + money.format(ptEmployee.get(i).getBiweeklyPay() * 26));
+
+                }
+            
+            }
+            
+            // Search through the full time employees to find information of the selcted
+            // employee.
+            for(int i = 0; i < ftEmployee.size(); i++){
+                
+                if(employeeList.getSelectedValue().equals(ftEmployee.get(i).getEmployeeID())){
+                    employeeTextPane.setText("Name : " + ftEmployee.get(i).getName() + "\n"
+                    + "Job Title: " + ftEmployee.get(i).getJobTitle() + "\n"
+                    + "Employee Status: " + "Full time" + "\n" 
+                    + "Biweekly Pay: " + money.format(ftEmployee.get(i).getBiweeklyPay()) + "\n"
+                    + "Monthly Pay: " + money.format(ftEmployee.get(i).getBiweeklyPay() * 2) + "\n"
+                    + "Annual Pay: " + money.format(ftEmployee.get(i).getSalary()));
+
+                }
+                
+            }
+            
+        }
+        else{
+            employeeTextPane.setText("");
+        }
+        
         
     }//GEN-LAST:event_employeeListValueChanged
 
@@ -720,6 +763,8 @@ public class EmployeeCostCalculator extends javax.swing.JFrame {
         });
     }
     
+    // Everytime a new employee is added everything must be updated.
+    // This includes the employee list, the employee table, and all final calculations.
     public void updateEverything(){
         
         DefaultListModel empList = (DefaultListModel) employeeList.getModel();
@@ -731,27 +776,27 @@ public class EmployeeCostCalculator extends javax.swing.JFrame {
         
         // Updating the employee List
         // If there are both full time and part time employees that have been
-        // initialized, fill out the list with their names.
+        // initialized, fill out the list with their employee IDs.
         if(ptEmployee.size() > 0 && ftEmployee.size() > 0){
             for(int i = 0; i < ptEmployee.size(); i++){
-                empList.addElement(ptEmployee.get(i).getName());
+                empList.addElement(ptEmployee.get(i).getEmployeeID());
             }
             
             for(int i = 0; i < ftEmployee.size(); i++){
-                empList.addElement(ftEmployee.get(i).getName());
+                empList.addElement(ftEmployee.get(i).getEmployeeID());
             }
             
         }
         // If only part time employees have been initialized, fill out the list with their names.
         else if(ptEmployee.size() > 0 && ftEmployee.size() < 1){
             for(int i = 0; i < ptEmployee.size(); i++){
-                empList.addElement(ptEmployee.get(i).getName());
+                empList.addElement(ptEmployee.get(i).getEmployeeID());
             }
         }
         // If only full time employees have been initialized, fill out the list with their names.
         else if(ftEmployee.size() > 0 && ptEmployee.size() < 1){
             for(int i = 0; i < ftEmployee.size(); i++){
-                empList.addElement(ftEmployee.get(i).getName());
+                empList.addElement(ftEmployee.get(i).getEmployeeID());
             }
         }
         // End of populating employee list.
@@ -779,7 +824,7 @@ public class EmployeeCostCalculator extends javax.swing.JFrame {
         }
         // End of employee table population
         
-        
+        // Initialize all cost calculations
         double genBiweeklyCost = 0.00;
         double genMonthlyCost = 0.00;
         double genAnnualCost = 0.00;
@@ -792,22 +837,26 @@ public class EmployeeCostCalculator extends javax.swing.JFrame {
         double ftMonthlyCost = 0.00;
         double ftAnnualCost = 0.00;
         
+        // Calculating cost of part time employees
         for(int i = 0; i < ptEmployee.size(); i++){
             ptBiweeklyCost += ptEmployee.get(i).getBiweeklyPay();
             ptMonthlyCost += ptEmployee.get(i).getBiweeklyPay() * 2;
             ptAnnualCost += ptEmployee.get(i).getBiweeklyPay() * 26;
         }
         
+        // Calculating the cost of full time employees
         for(int i = 0; i < ftEmployee.size(); i++){
             ftBiweeklyCost += ftEmployee.get(i).getBiweeklyPay();
             ftMonthlyCost += ftEmployee.get(i).getBiweeklyPay() * 2;
             ftAnnualCost += ftEmployee.get(i).getBiweeklyPay() * 26;
         }
         
+        // Calculating the cost of both part time and full time employees combined
         genBiweeklyCost = ptBiweeklyCost + ftBiweeklyCost;
         genMonthlyCost = ptMonthlyCost + ftMonthlyCost;
         genAnnualCost = ptAnnualCost + ftAnnualCost;
         
+        // Display the costs of each group.
         totalBiweeklyCostLBL.setText(money.format(genBiweeklyCost));
         totalMonthlyCostLBL.setText(money.format(genMonthlyCost));
         totalAnnualCostLBL.setText(money.format(genAnnualCost));
@@ -819,6 +868,7 @@ public class EmployeeCostCalculator extends javax.swing.JFrame {
         totalFTBiweeklyCostLBL.setText(money.format(ftBiweeklyCost));
         totalFTMonthlyCostLBL.setText(money.format(ftMonthlyCost));
         totalFTAnnualCostLBL.setText(money.format(ftAnnualCost));
+        // End of display
         
     }
 

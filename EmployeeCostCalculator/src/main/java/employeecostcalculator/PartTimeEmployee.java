@@ -13,6 +13,7 @@ public class PartTimeEmployee extends Employee{
     
     private String empName;
     private String jobTitle;
+    private String empID;
     private double hourlyPay;
     private int hoursWorked;
     private double biweeklyPay;
@@ -20,6 +21,7 @@ public class PartTimeEmployee extends Employee{
     public PartTimeEmployee(){
         empName = "";
         jobTitle = "";
+        empID = "";
         hourlyPay = 0.00;
         hoursWorked = 0;
         biweeklyPay = 0.00;
@@ -43,6 +45,16 @@ public class PartTimeEmployee extends Employee{
     @Override
     public String getJobTitle() {
         return jobTitle;
+    }
+    
+    @Override
+    public void setEmployeeID(int ID) {
+        empID = "PT-" + ID;
+    }
+
+    @Override
+    public String getEmployeeID() {
+        return empID;
     }
     
     public void setHourlyPay(double hourly){
