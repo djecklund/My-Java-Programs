@@ -244,7 +244,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="gradeCB" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="addClassButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="addModClassButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -274,7 +274,7 @@
                               <Component id="creditHoursTF" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="addClassButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="addModClassButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -344,13 +344,13 @@
                     <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="creditHoursTFCaretUpdate"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="addClassButton">
+                <Component class="javax.swing.JButton" name="addModClassButton">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Add Class"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addClassButtonActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addModClassButtonActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

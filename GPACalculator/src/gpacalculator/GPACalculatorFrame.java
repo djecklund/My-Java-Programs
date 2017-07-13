@@ -21,6 +21,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
      */
     
     ArrayList<ClassInfo> classInfo;
+    boolean isBeingModified;
     
     public GPACalculatorFrame() {
         initComponents();
@@ -28,6 +29,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
         this.setResizable(false);
         
         classInfo = new ArrayList<>();
+        isBeingModified = false;
         
         // Read through the excel spreadsheet and add the classes to the results table and remove list        
         CollectClassInfo collect = new CollectClassInfo();
@@ -64,7 +66,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
         gradeCB = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         creditHoursTF = new javax.swing.JTextField();
-        addClassButton = new javax.swing.JButton();
+        addModClassButton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         removeClassList = new javax.swing.JList<>();
@@ -169,11 +171,11 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
             }
         });
 
-        addClassButton.setText("Add Class");
-        addClassButton.setEnabled(false);
-        addClassButton.addActionListener(new java.awt.event.ActionListener() {
+        addModClassButton.setText("Add Class");
+        addModClassButton.setEnabled(false);
+        addModClassButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addClassButtonActionPerformed(evt);
+                addModClassButtonActionPerformed(evt);
             }
         });
 
@@ -200,7 +202,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(gradeCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(addClassButton))
+                    .addComponent(addModClassButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -223,7 +225,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(creditHoursTF, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addClassButton)
+                .addComponent(addModClassButton)
                 .addGap(30, 30, 30))
         );
 
@@ -318,10 +320,10 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
                 || classTitleTF.getText().equals("") || classTitleTF.getText().startsWith(" ")
                 || creditHoursTF.getText().equals("") || creditHoursTF.getText().startsWith(" ")){
             
-            addClassButton.setEnabled(false);
+            addModClassButton.setEnabled(false);
         }
         else{
-            addClassButton.setEnabled(true);
+            addModClassButton.setEnabled(true);
         }
         
     }//GEN-LAST:event_subjectTFCaretUpdate
@@ -333,10 +335,10 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
                 || classTitleTF.getText().equals("") || classTitleTF.getText().startsWith(" ")
                 || creditHoursTF.getText().equals("") || creditHoursTF.getText().startsWith(" ")){
             
-            addClassButton.setEnabled(false);
+            addModClassButton.setEnabled(false);
         }
         else{
-            addClassButton.setEnabled(true);
+            addModClassButton.setEnabled(true);
         }
         
     }//GEN-LAST:event_classTitleTFCaretUpdate
@@ -348,37 +350,52 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
                 || classTitleTF.getText().equals("") || classTitleTF.getText().startsWith(" ")
                 || creditHoursTF.getText().equals("") || creditHoursTF.getText().startsWith(" ")){
             
-            addClassButton.setEnabled(false);
+            addModClassButton.setEnabled(false);
         }
         else{
-            addClassButton.setEnabled(true);
+            addModClassButton.setEnabled(true);
         }
         
     }//GEN-LAST:event_creditHoursTFCaretUpdate
 
-    private void addClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addClassButtonActionPerformed
+    private void addModClassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addModClassButtonActionPerformed
+        
+        UpdatingClassInfo updateClassInfo = new UpdatingClassInfo();
         
         try{
             
-            // Add the new class to the classInfo ArrayList
-            ClassInfo info = new ClassInfo();
-            info.setSubject(subjectTF.getText());
-            info.setTitle(classTitleTF.getText());
+            String subject = subjectTF.getText();
+            String title = classTitleTF.getText();
             char grade = gradeCB.getSelectedItem().toString().charAt(0);
-            info.setGrade(grade);
-            info.setCreditHours(Integer.parseInt(creditHoursTF.getText()));
-            info.setQualityPoints();
-            classInfo.add(info);
+            int creditHours = Integer.parseInt(creditHoursTF.getText());
             
-            // Reset all of the textfields and the grades combobox
-            subjectTF.setText("");
-            classTitleTF.setText("");
-            gradeCB.setSelectedIndex(0);
-            creditHoursTF.setText("");
-            
-            // Add the new class to the excel spreadsheet
-            UpdatingClassInfo addClass = new UpdatingClassInfo();
-            addClass.updateClasses(classInfo);
+            // Determine if user is adding a new class or modifying an already existing class
+            ModifyClassInformation modify = new ModifyClassInformation();
+            if(isBeingModified == true){
+                
+                classInfo = modify.modifyClassInfo(classInfo, subject, title, grade, creditHours, removeClassList.getSelectedIndex());
+                updateClassInfo.updateClasses(classInfo);
+            }
+            else{
+                // Add the new class to the classInfo ArrayList
+                ClassInfo info = new ClassInfo();
+                info.setSubject(subjectTF.getText());
+                info.setTitle(classTitleTF.getText());
+                info.setGrade(grade);
+                info.setCreditHours(Integer.parseInt(creditHoursTF.getText()));
+                info.setQualityPoints();
+                classInfo.add(info);
+
+                // Reset all of the textfields and the grades combobox
+                subjectTF.setText("");
+                classTitleTF.setText("");
+                gradeCB.setSelectedIndex(0);
+                creditHoursTF.setText("");
+
+                // Add the new class to the excel spreadsheet
+                updateClassInfo.updateClasses(classInfo);
+
+            }
             
             // update the results table and the removal list
             updateResultsTable();
@@ -389,17 +406,46 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
             creditHoursTF.setText("");
         }
         
-    }//GEN-LAST:event_addClassButtonActionPerformed
+    }//GEN-LAST:event_addModClassButtonActionPerformed
 
     private void removeClassListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_removeClassListValueChanged
         
         // Makes sure the user has a class selected in the remove list before they 
-        // try to remove anything
+        // try to remove anything or modify it.
         if(removeClassList.getSelectedIndex() < 0){
             removeClassButton.setEnabled(false);
+            addModClassButton.setText("Add Class");
+            subjectTF.setText("");
+            classTitleTF.setText("");
+            gradeCB.setSelectedIndex(0);
+            creditHoursTF.setText("");
+            isBeingModified = false;
         }
         else{
+            subjectTF.setText(classInfo.get(removeClassList.getSelectedIndex()).getSubject());
+            classTitleTF.setText(classInfo.get(removeClassList.getSelectedIndex()).getTitle());
+            
+            switch(classInfo.get(removeClassList.getSelectedIndex()).getGrade()){
+                case 'A':
+                    gradeCB.setSelectedIndex(0);
+                    break;
+                case 'B':
+                    gradeCB.setSelectedIndex(1);
+                    break;
+                case 'C':
+                    gradeCB.setSelectedIndex(2);
+                    break;
+                case 'D':
+                    gradeCB.setSelectedIndex(3);
+                    break;
+                case 'F':
+                    gradeCB.setSelectedIndex(4);
+            }
+            
+            creditHoursTF.setText("" + classInfo.get(removeClassList.getSelectedIndex()).getCreditHours());
+            addModClassButton.setText("Modify Class");
             removeClassButton.setEnabled(true);
+            isBeingModified = true;
         }
         
     }//GEN-LAST:event_removeClassListValueChanged
@@ -489,9 +535,9 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
         }
         
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addClassButton;
+    private javax.swing.JButton addModClassButton;
     private javax.swing.JTextField classTitleTF;
     private javax.swing.JTextField creditHoursTF;
     private javax.swing.JLabel gpaLBL;
