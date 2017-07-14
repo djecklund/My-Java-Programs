@@ -5,6 +5,7 @@
  */
 package gpacalculator;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -21,7 +22,10 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
      */
     
     ArrayList<ClassInfo> classInfo;
+    ArrayList<String> searchOptions;
     boolean isBeingModified;
+    
+    DecimalFormat gpaFormat = new DecimalFormat("###.00");
     
     public GPACalculatorFrame() {
         initComponents();
@@ -29,12 +33,21 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
         this.setResizable(false);
         
         classInfo = new ArrayList<>();
+        searchOptions = new ArrayList<>();
         isBeingModified = false;
         
         // Read through the excel spreadsheet and add the classes to the results table and remove list        
         CollectClassInfo collect = new CollectClassInfo();
         collect.collectClassInfo();
         classInfo = collect.getClassInfo();
+        
+        // Set up the combobox for querying specific results
+        PossibleSearchOptions options = new PossibleSearchOptions();
+        searchOptions = options.setUpSearchOptions(classInfo);
+        
+        for(int i = 0; i < searchOptions.size(); i++){
+            pickSubjectCB.addItem(searchOptions.get(i));
+        }
         
         updateResultsTable();
         updateRemoveClassList();
@@ -54,6 +67,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         resultsTable = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
         pickSubjectCB = new javax.swing.JComboBox<>();
         gpaLBL = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -105,8 +119,37 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
             resultsTable.getColumnModel().getColumn(4).setMaxWidth(100);
         }
 
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Query Specific Classes:"));
+
+        pickSubjectCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All" }));
+        pickSubjectCB.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                pickSubjectCBItemStateChanged(evt);
+            }
+        });
+
         gpaLBL.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         gpaLBL.setText("Your GPA is: ");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pickSubjectCB, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(gpaLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(gpaLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pickSubjectCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 34, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -115,24 +158,17 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(pickSubjectCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(gpaLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pickSubjectCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(gpaLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Results", jPanel2);
@@ -226,7 +262,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
                     .addComponent(creditHoursTF, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addModClassButton)
-                .addGap(30, 30, 30))
+                .addContainerGap())
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Remove a Class"));
@@ -265,7 +301,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(removeClassButton)
                 .addContainerGap())
@@ -286,8 +322,10 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -463,6 +501,12 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_removeClassButtonActionPerformed
 
+    private void pickSubjectCBItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pickSubjectCBItemStateChanged
+        
+        search();
+        
+    }//GEN-LAST:event_pickSubjectCBItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -536,6 +580,49 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
         
     }
     
+    // Search for the selected classes and display them.
+    public void search(){
+        
+        DefaultTableModel results = (DefaultTableModel) resultsTable.getModel();
+        
+        // Initialize the variables needed for gpa calculation
+        double qualityPointsEarned = 0.0;
+        double totalCreditHours = 0.0;
+        
+        // Reset the results table
+        for(int i = results.getRowCount() - 1; i >= 0; i--){
+            results.removeRow(i);
+        }
+        
+        // Calculate the gpa based on the queried results
+        for(int i = 0; i < classInfo.size(); i++){
+            if(pickSubjectCB.getSelectedItem().equals(classInfo.get(i).getSubject())){
+                
+                // Add up the quality points and credit hours for the final gpa
+                // calculation.
+                qualityPointsEarned += classInfo.get(i).getQualityPoints();
+                totalCreditHours += classInfo.get(i).getCreditHours();
+                
+                // Add the specific classes to the results table
+                Object info[] = {classInfo.get(i).getSubject(), classInfo.get(i).getTitle(), classInfo.get(i).getGrade(),
+                classInfo.get(i).getCreditHours(), classInfo.get(i).getQualityPoints()};
+                results.addRow(info);
+                
+                // Calculate the gpa and show it in the gpa label.
+                double gpa = qualityPointsEarned / totalCreditHours;
+                gpaLBL.setText("Your GPA is: " + gpaFormat.format(gpa));
+                
+            }
+        }
+        
+        // The item at index zero of the combobox is "All".If the first item in the pickSubjectCB (combobox) 
+        // is selected, reset the table to show all classes and change the gpa accordingly.
+        if(pickSubjectCB.getSelectedIndex() == 0){
+            updateResultsTable();
+        }
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addModClassButton;
     private javax.swing.JTextField classTitleTF;
@@ -550,6 +637,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
