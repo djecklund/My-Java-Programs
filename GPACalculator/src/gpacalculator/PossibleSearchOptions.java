@@ -6,6 +6,8 @@
 package gpacalculator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -21,18 +23,17 @@ public class PossibleSearchOptions {
     
     public ArrayList<String> setUpSearchOptions(ArrayList<ClassInfo> classInfo){
         
+        // Store all data temporarily in searchOptions Arraylist
         for(int i = 0; i < classInfo.size(); i++){
             searchOptions.add(classInfo.get(i).getSubject());
         }
         
-        // Remove duplicate subjects (Currently not working!!!)
-        for(int i = 0; i < searchOptions.size(); i++){
-            for(int j = 0; j < searchOptions.size(); j++){
-                if(searchOptions.get(i).equals(searchOptions.get(j))){
-                    searchOptions.remove(j);
-                }
-            }
-        }
+        // Remove any duplicate values in searchOptions ArrayList by storing its values 
+        // in a HashSet, then place the new list in searchOptions
+        Set<String> temp = new HashSet<>();
+        temp.addAll(searchOptions);
+        searchOptions.removeAll(searchOptions);
+        searchOptions.addAll(temp);
         
         return searchOptions;
     }

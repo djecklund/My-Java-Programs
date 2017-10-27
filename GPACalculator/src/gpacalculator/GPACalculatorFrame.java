@@ -40,7 +40,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
         CollectClassInfo collect = new CollectClassInfo();
         collect.collectClassInfo();
         classInfo = collect.getClassInfo();
-        
+                
         // Set up the combobox for querying specific results
         PossibleSearchOptions options = new PossibleSearchOptions();
         searchOptions = options.setUpSearchOptions(classInfo);
@@ -593,7 +593,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
         for(int i = results.getRowCount() - 1; i >= 0; i--){
             results.removeRow(i);
         }
-        
+                
         // Calculate the gpa based on the queried results
         for(int i = 0; i < classInfo.size(); i++){
             if(pickSubjectCB.getSelectedItem().equals(classInfo.get(i).getSubject())){
