@@ -16,12 +16,12 @@ public class Node {
     
     // Create all the datatypes for the linked list
     String stringData;
-//    char charData;
-//    int intData;
-//    double doubleData;
-//    float floatData;
-//    long longData;
-//    boolean booleanData;
+    char charData;
+    int intData;
+    double doubleData;
+    float floatData;
+    long longData;
+    boolean booleanData;
     
     public Node(){
         
@@ -32,28 +32,28 @@ public class Node {
     }
     
     // Still Working on this to make a more dynamic LinkedList
-//    public Node(char d){
-//        charData = d;
-//    }
-//    
-//    public Node(int d){
-//        intData = d;
-//    }
-//    
-//    public Node(double d){
-//        doubleData = d;
-//    }
-//    
-//    public Node(float d){
-//        floatData = d;
-//    }
-//    
-//    public Node(long d){
-//        longData = d;
-//    }
-//    
-//    public Node(boolean d){
-//        booleanData = d;
-//    }
+    public Node(char d){
+        charData = d;
+    }
+    
+    public Node(int d){
+        intData = d;
+    }
+    
+    public Node(double d){
+        doubleData = d;
+    }
+    
+    public Node(float d){
+        floatData = d;
+    }
+    
+    public Node(long d){
+        longData = d;
+    }
+    
+    public Node(boolean d){
+        booleanData = d;
+    }
     
 }
