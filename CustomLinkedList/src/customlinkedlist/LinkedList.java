@@ -460,6 +460,7 @@ public class LinkedList {
     // End of deleteNodeAtIndex method
     
     // find method
+    // find String method
     public String find(String data){
         
         Node current = stringHead;
@@ -486,6 +487,135 @@ public class LinkedList {
         System.out.println("Find failed: No node found with given data!");
         return name;
     }
+    // End of find String method
+    
+    // find Integer method
+    public String find(int d){
+        
+        Node current = intHead;
+        int data = d;
+        String collectDescendents = "";
+        boolean found = false;
+        
+        // Find the node with the data that the user specifies and return that node and every node after it
+        // that are connected to it.
+        while(current.nextInt != null){
+            if(current.nextInt.intData == data && found == false){
+                data = current.nextInt.intData;
+                collectDescendents = "" + data;
+                System.out.println("Success! Node with data " + data + " found.");
+                found = true;
+                
+            }
+            else if(current.nextInt.intData != data && found == true){
+                collectDescendents += " --> " + current.nextInt.intData;
+                current = current.nextInt;
+            }
+            else{
+                current = current.nextInt;
+            }
+        }
+        System.out.println("Find failed: No node found with given data!");
+        return collectDescendents;
+        
+    }
+    // end of find Integer method
+    
+    // find Double method
+    public String find(double d){
+        
+        Node current = doubleHead;
+        double data = d;
+        String collectDescendents = "";
+        boolean found = false;
+        
+        // Find the node with the data that the user specifies and return that node and every node after it
+        // that are connected to it.
+        while(current.nextDouble != null){
+            if(current.nextDouble.doubleData == data && found == false){
+                data = current.nextDouble.doubleData;
+                collectDescendents = "" + data;
+                System.out.println("Success! Node with data " + data + " found.");
+                found = true;
+                
+            }
+            else if(current.nextDouble.doubleData != data && found == true){
+                collectDescendents += " --> " + current.nextDouble.doubleData;
+                current = current.nextDouble;
+            }
+            else{
+                current = current.nextDouble;
+            }
+        }
+        System.out.println("Find failed: No node found with given data!");
+        return collectDescendents;
+        
+    }
+    // end of find Double method
+    
+    // find Float method
+    public String find(float d){
+        
+        Node current = floatHead;
+        float data = d;
+        String collectDescendents = "";
+        boolean found = false;
+        
+        // Find the node with the data that the user specifies and return that node and every node after it
+        // that are connected to it.
+        while(current.nextFloat != null){
+            if(current.nextFloat.floatData == data && found == false){
+                data = current.nextFloat.floatData;
+                collectDescendents = "" + data;
+                System.out.println("Success! Node with data " + data + " found.");
+                found = true;
+                
+            }
+            else if(current.nextFloat.floatData != data && found == true){
+                collectDescendents += " --> " + current.nextFloat.floatData;
+                current = current.nextFloat;
+            }
+            else{
+                current = current.nextFloat;
+            }
+        }
+        System.out.println("Find failed: No node found with given data!");
+        return collectDescendents;
+        
+    }
+    // end of find Float method
+    
+    // find Long method
+    public String find(long d){
+        
+        Node current = longHead;
+        long data = d;
+        String collectDescendents = "";
+        boolean found = false;
+        
+        // Find the node with the data that the user specifies and return that node and every node after it
+        // that are connected to it.
+        while(current.nextLong != null){
+            if(current.nextLong.longData == data && found == false){
+                data = current.nextLong.longData;
+                collectDescendents = "" + data;
+                System.out.println("Success! Node with data " + data + " found.");
+                found = true;
+                
+            }
+            else if(current.nextLong.longData != data && found == true){
+                collectDescendents += " --> " + current.nextLong.longData;
+                current = current.nextLong;
+            }
+            else{
+                current = current.nextLong;
+            }
+        }
+        System.out.println("Find failed: No node found with given data!");
+        return collectDescendents;
+        
+    }
+    // end of find Long method
     // End of find method
     
 }

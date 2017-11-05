@@ -34,6 +34,13 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         dataTypes.add(longRB);
         dataTypes.add(booleanRB);
         
+        ButtonGroup findDataTypes = new ButtonGroup();
+        findDataTypes.add(findStringRB);
+        findDataTypes.add(findIntegerRB);
+        findDataTypes.add(findDoubleRB);
+        findDataTypes.add(findFloatRB);
+        findDataTypes.add(findLongRB);
+        
     }
 
     /**
@@ -48,8 +55,8 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        enterNameAtIndexTF = new javax.swing.JTextField();
+        addElementAtIndexLBL = new javax.swing.JLabel();
+        enterDataAtIndexTF = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         addAtIndexCB = new javax.swing.JComboBox<>();
         addElementAtIndexButton = new javax.swing.JButton();
@@ -57,7 +64,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         displayNamesTA = new javax.swing.JTextArea();
         jPanel6 = new javax.swing.JPanel();
         addElementLBL = new javax.swing.JLabel();
-        enterNameTF = new javax.swing.JTextField();
+        enterDataTF = new javax.swing.JTextField();
         addElementButton = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         stringRB = new javax.swing.JRadioButton();
@@ -80,11 +87,17 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         deleteElementButton = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        findANodeLBL = new javax.swing.JLabel();
         findNameTF = new javax.swing.JTextField();
         findElementButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         displayNames3TA = new javax.swing.JTextArea();
+        jPanel10 = new javax.swing.JPanel();
+        findStringRB = new javax.swing.JRadioButton();
+        findIntegerRB = new javax.swing.JRadioButton();
+        findDoubleRB = new javax.swing.JRadioButton();
+        findFloatRB = new javax.swing.JRadioButton();
+        findLongRB = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Custom LinkedList");
@@ -97,11 +110,11 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Add element add specific index"));
 
-        jLabel2.setText("Enter a Name:");
+        addElementAtIndexLBL.setText("Enter a String");
 
-        enterNameAtIndexTF.addCaretListener(new javax.swing.event.CaretListener() {
+        enterDataAtIndexTF.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                enterNameAtIndexTFCaretUpdate(evt);
+                enterDataAtIndexTFCaretUpdate(evt);
             }
         });
 
@@ -131,9 +144,9 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(addElementAtIndexLBL)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(enterNameAtIndexTF))
+                        .addComponent(enterDataAtIndexTF))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -146,8 +159,8 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(enterNameAtIndexTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(enterDataAtIndexTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addElementAtIndexLBL))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -167,9 +180,9 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
 
         addElementLBL.setText("Enter a String:");
 
-        enterNameTF.addCaretListener(new javax.swing.event.CaretListener() {
+        enterDataTF.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                enterNameTFCaretUpdate(evt);
+                enterDataTFCaretUpdate(evt);
             }
         });
 
@@ -192,7 +205,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(addElementLBL)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(enterNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(enterDataTF, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -201,7 +214,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addElementLBL)
-                    .addComponent(enterNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(enterDataTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addElementButton)
                 .addContainerGap())
@@ -451,7 +464,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Find the element"));
 
-        jLabel6.setText("Find an element:");
+        findANodeLBL.setText("Find a String:");
 
         findNameTF.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -475,9 +488,9 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(findANodeLBL)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(findNameTF))
+                        .addComponent(findNameTF, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(findElementButton)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -488,7 +501,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(findANodeLBL)
                     .addComponent(findNameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(findElementButton)
@@ -500,6 +513,76 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         displayNames3TA.setRows(5);
         jScrollPane3.setViewportView(displayNames3TA);
 
+        findStringRB.setSelected(true);
+        findStringRB.setText("String");
+        findStringRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findStringRBActionPerformed(evt);
+            }
+        });
+
+        findIntegerRB.setText("Integer");
+        findIntegerRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findIntegerRBActionPerformed(evt);
+            }
+        });
+
+        findDoubleRB.setText("Double");
+        findDoubleRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findDoubleRBActionPerformed(evt);
+            }
+        });
+
+        findFloatRB.setText("Float");
+        findFloatRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findFloatRBActionPerformed(evt);
+            }
+        });
+
+        findLongRB.setText("Long");
+        findLongRB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findLongRBActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(findStringRB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(findIntegerRB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(findDoubleRB))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(findFloatRB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(findLongRB)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(findStringRB)
+                    .addComponent(findIntegerRB)
+                    .addComponent(findDoubleRB))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(findFloatRB)
+                    .addComponent(findLongRB))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -507,18 +590,21 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Find Element", jPanel7);
@@ -566,7 +652,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         }
         
         // set the textfield to empty so the user can add new nodes later.
-        enterNameTF.setText("");
+        enterDataTF.setText("");
         
     }//GEN-LAST:event_addElementButtonActionPerformed
 
@@ -647,31 +733,68 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         
         // Find the node that contains the data and return it
         // and every node after it.
-        String name = linkedList.find(findNameTF.getText());
-        
-        displayNames3TA.setText(name);
-        findNameTF.setText("");
+        if(findStringRB.isSelected()){
+            String data = linkedList.find(findNameTF.getText());
+            displayNames3TA.setText(data);
+            findNameTF.setText("");
+        }
+        else if(findIntegerRB.isSelected()){
+            try{
+                int searchFor = Integer.parseInt(findNameTF.getText());
+                String data = linkedList.find(searchFor);
+                displayNames3TA.setText(data);
+            }catch(NumberFormatException num){
+                
+            }
+        }
+        else if(findDoubleRB.isSelected()){
+            try{
+                double searchFor = Double.parseDouble(findNameTF.getText());
+                String data = linkedList.find(searchFor);
+                displayNames3TA.setText(data);
+            }catch(NumberFormatException num){
+                
+            }
+        }
+        else if(findFloatRB.isSelected()){
+            try{
+                float searchFor = Float.parseFloat(findNameTF.getText());
+                String data = linkedList.find(searchFor);
+                displayNames3TA.setText(data);
+            }catch(NumberFormatException num){
+                
+            }
+        }
+        else if(findLongRB.isSelected()){
+            try{
+                long searchFor = Long.parseLong(findNameTF.getText());
+                String data = linkedList.find(searchFor);
+                displayNames3TA.setText(data);
+            }catch(NumberFormatException num){
+                
+            }
+        }
         
     }//GEN-LAST:event_findElementButtonActionPerformed
 
-    private void enterNameTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_enterNameTFCaretUpdate
+    private void enterDataTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_enterDataTFCaretUpdate
         
         // Don't let the user submit their request to create a node unless it is getting
         // valid data.
-        if(enterNameTF.getText().equals("") || enterNameTF.getText().startsWith(" ")){
+        if(enterDataTF.getText().equals("") || enterDataTF.getText().startsWith(" ")){
             addElementButton.setEnabled(false);
         }
         else{
             addElementButton.setEnabled(true);
         }
         
-    }//GEN-LAST:event_enterNameTFCaretUpdate
+    }//GEN-LAST:event_enterDataTFCaretUpdate
 
-    private void enterNameAtIndexTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_enterNameAtIndexTFCaretUpdate
+    private void enterDataAtIndexTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_enterDataAtIndexTFCaretUpdate
         
         // Don't let the user submit their request to create a node unless it is getting
         // valid data.
-        if(enterNameAtIndexTF.getText().equals("") || enterNameAtIndexTF.getText().startsWith(" ")){
+        if(enterDataAtIndexTF.getText().equals("") || enterDataAtIndexTF.getText().startsWith(" ")){
             addAtIndexCB.setEnabled(false);
             addElementAtIndexButton.setEnabled(false);
         }
@@ -680,7 +803,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
             addElementAtIndexButton.setEnabled(true);
         }
         
-    }//GEN-LAST:event_enterNameAtIndexTFCaretUpdate
+    }//GEN-LAST:event_enterDataAtIndexTFCaretUpdate
 
     private void findNameTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_findNameTFCaretUpdate
         
@@ -719,31 +842,58 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
 
     private void stringRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stringRBActionPerformed
         addElementLBL.setText("Enter a String:");
+        addElementAtIndexLBL.setText("Enter a String:");
     }//GEN-LAST:event_stringRBActionPerformed
 
     private void integerRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_integerRBActionPerformed
         addElementLBL.setText("Enter an Integer:");
+        addElementAtIndexLBL.setText("Enter a Integer:");
     }//GEN-LAST:event_integerRBActionPerformed
 
     private void doubleRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doubleRBActionPerformed
         addElementLBL.setText("Enter a Double:");
+        addElementAtIndexLBL.setText("Enter a Double:");
     }//GEN-LAST:event_doubleRBActionPerformed
 
     private void charRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_charRBActionPerformed
         addElementLBL.setText("Enter a Letter:");
+        addElementAtIndexLBL.setText("Enter a Letter:");
     }//GEN-LAST:event_charRBActionPerformed
 
     private void floatRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_floatRBActionPerformed
         addElementLBL.setText("Enter a Float:");
+        addElementAtIndexLBL.setText("Enter a Float:");
     }//GEN-LAST:event_floatRBActionPerformed
 
     private void longRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_longRBActionPerformed
         addElementLBL.setText("Enter a Long:");
+        addElementAtIndexLBL.setText("Enter a Long:");
     }//GEN-LAST:event_longRBActionPerformed
 
     private void booleanRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_booleanRBActionPerformed
         addElementLBL.setText("Enter true or false:");
+        addElementAtIndexLBL.setText("Enter true or false:");
     }//GEN-LAST:event_booleanRBActionPerformed
+
+    private void findStringRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findStringRBActionPerformed
+        findANodeLBL.setText("Enter a String:");
+    }//GEN-LAST:event_findStringRBActionPerformed
+
+    private void findIntegerRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findIntegerRBActionPerformed
+        findANodeLBL.setText("Enter an Integer:");
+    }//GEN-LAST:event_findIntegerRBActionPerformed
+
+    private void findDoubleRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findDoubleRBActionPerformed
+        findANodeLBL.setText("Enter a Double:");
+    }//GEN-LAST:event_findDoubleRBActionPerformed
+
+    private void findFloatRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findFloatRBActionPerformed
+        findANodeLBL.setText("Enter a Float:");
+    }//GEN-LAST:event_findFloatRBActionPerformed
+
+    private void findLongRBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findLongRBActionPerformed
+        findANodeLBL.setText("Enter a Long:");
+    }//GEN-LAST:event_findLongRBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -783,7 +933,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
     // addStringNode method
     public void addStringNode(){
         
-        linkedList.add(enterNameTF.getText());
+        linkedList.add(enterDataTF.getText());
             
         // Add the new node to the LinkedList.
         // The add and delete combo boxes start out with a zero index populated in them.
@@ -798,7 +948,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
 
         // display the contents of the LinkedList
         displayNamesTA.setText(linkedList.showStringData());
-        enterNameTF.setText("");
+        enterDataTF.setText("");
         
     }
     // End of addStringNode method
@@ -808,7 +958,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         
         try{
                 
-                linkedList.add(Integer.parseInt(enterNameTF.getText()));
+                linkedList.add(Integer.parseInt(enterDataTF.getText()));
                 
                 if(linkedList.intListCounter > 1){
                     
@@ -819,7 +969,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
                 }
                 
                 displayNamesTA.setText(linkedList.showIntegerData());
-                enterNameTF.setText("");
+                enterDataTF.setText("");
                 
             }catch(NumberFormatException num){
                 
@@ -832,7 +982,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         
         try{
                 
-                linkedList.add(Double.parseDouble(enterNameTF.getText()));
+                linkedList.add(Double.parseDouble(enterDataTF.getText()));
                 
                 if(linkedList.doubleListCounter > 1){
                     
@@ -843,7 +993,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
                 }
                 
                 displayNamesTA.setText(linkedList.showDoubleData());
-                enterNameTF.setText("");
+                enterDataTF.setText("");
                 
             }catch(NumberFormatException num){
                 
@@ -856,7 +1006,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         
         try{
                 
-                linkedList.add(Float.parseFloat(enterNameTF.getText()));
+                linkedList.add(Float.parseFloat(enterDataTF.getText()));
                 
                 if(linkedList.floatListCounter > 1){
                     
@@ -867,7 +1017,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
                 }
                 
                 displayNamesTA.setText(linkedList.showFloatData());
-                enterNameTF.setText("");
+                enterDataTF.setText("");
                 
             }catch(NumberFormatException num){
                 
@@ -881,7 +1031,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         
         try{
                 
-                linkedList.add(Long.parseLong(enterNameTF.getText()));
+                linkedList.add(Long.parseLong(enterDataTF.getText()));
                 
                 if(linkedList.longListCounter > 1){
                     
@@ -892,7 +1042,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
                 }
                 
                 displayNamesTA.setText(linkedList.showLongData());
-                enterNameTF.setText("");
+                enterDataTF.setText("");
                 
             }catch(NumberFormatException num){
                 
@@ -914,7 +1064,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         // check to see if the index for the exists in the LinkedList
         // If it does exist add the node to that index and shift all nodes after it
         // over one.
-        boolean check = linkedList.add(enterNameAtIndexTF.getText(), index);
+        boolean check = linkedList.add(enterDataAtIndexTF.getText(), index);
 
         // If the index exists, add the node to that index.
         // Add another index value to the combo boxes and set the textfield empty
@@ -926,11 +1076,11 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
                 deleteAtIndexCB.addItem("" + i);
             }
                 
-            enterNameAtIndexTF.setText("");
+            enterDataAtIndexTF.setText("");
             displayNamesTA.setText(linkedList.showStringData());
         }
         else{
-            enterNameAtIndexTF.setText("");
+            enterDataAtIndexTF.setText("");
         }
     }
     // End of addStringNodeAtIndex method
@@ -950,7 +1100,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         // over one.
         try{
             
-            int intData = Integer.parseInt(enterNameAtIndexTF.getText());
+            int intData = Integer.parseInt(enterDataAtIndexTF.getText());
             
             boolean check = linkedList.add(intData, index);
 
@@ -964,11 +1114,11 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
                     deleteAtIndexCB.addItem("" + i);
                 }
 
-                enterNameAtIndexTF.setText("");
+                enterDataAtIndexTF.setText("");
                 displayNamesTA.setText(linkedList.showIntegerData());
             }
             else{
-                enterNameAtIndexTF.setText("");
+                enterDataAtIndexTF.setText("");
             }
             
         }catch(NumberFormatException num){
@@ -993,7 +1143,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         // over one.
         try{
             
-            double doubleData = Double.parseDouble(enterNameAtIndexTF.getText());
+            double doubleData = Double.parseDouble(enterDataAtIndexTF.getText());
             
             boolean check = linkedList.add(doubleData, index);
 
@@ -1007,11 +1157,11 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
                     deleteAtIndexCB.addItem("" + i);
                 }
 
-                enterNameAtIndexTF.setText("");
+                enterDataAtIndexTF.setText("");
                 displayNamesTA.setText(linkedList.showDoubleData());
             }
             else{
-                enterNameAtIndexTF.setText("");
+                enterDataAtIndexTF.setText("");
             }
             
         }catch(NumberFormatException num){
@@ -1036,7 +1186,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         // over one.
         try{
             
-            float floatData = Float.parseFloat(enterNameAtIndexTF.getText());
+            float floatData = Float.parseFloat(enterDataAtIndexTF.getText());
             
             boolean check = linkedList.add(floatData, index);
 
@@ -1050,11 +1200,11 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
                     deleteAtIndexCB.addItem("" + i);
                 }
 
-                enterNameAtIndexTF.setText("");
+                enterDataAtIndexTF.setText("");
                 displayNamesTA.setText(linkedList.showFloatData());
             }
             else{
-                enterNameAtIndexTF.setText("");
+                enterDataAtIndexTF.setText("");
             }
             
         }catch(NumberFormatException num){
@@ -1079,7 +1229,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
         // over one.
         try{
             
-            long longData = Long.parseLong(enterNameAtIndexTF.getText());
+            long longData = Long.parseLong(enterDataAtIndexTF.getText());
             
             boolean check = linkedList.add(longData, index);
 
@@ -1093,11 +1243,11 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
                     deleteAtIndexCB.addItem("" + i);
                 }
 
-                enterNameAtIndexTF.setText("");
+                enterDataAtIndexTF.setText("");
                 displayNamesTA.setText(linkedList.showLongData());
             }
             else{
-                enterNameAtIndexTF.setText("");
+                enterDataAtIndexTF.setText("");
             }
             
         }catch(NumberFormatException num){
@@ -1110,6 +1260,7 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> addAtIndexCB;
     private javax.swing.JButton addElementAtIndexButton;
+    private javax.swing.JLabel addElementAtIndexLBL;
     private javax.swing.JButton addElementButton;
     private javax.swing.JLabel addElementLBL;
     private javax.swing.JRadioButton booleanRB;
@@ -1122,18 +1273,23 @@ public class CustomLinkedListDemo extends javax.swing.JFrame {
     private javax.swing.JTextArea displayNames3TA;
     private javax.swing.JTextArea displayNamesTA;
     private javax.swing.JRadioButton doubleRB;
-    private javax.swing.JTextField enterNameAtIndexTF;
-    private javax.swing.JTextField enterNameTF;
+    private javax.swing.JTextField enterDataAtIndexTF;
+    private javax.swing.JTextField enterDataTF;
+    private javax.swing.JLabel findANodeLBL;
+    private javax.swing.JRadioButton findDoubleRB;
     private javax.swing.JButton findElementButton;
+    private javax.swing.JRadioButton findFloatRB;
+    private javax.swing.JRadioButton findIntegerRB;
+    private javax.swing.JRadioButton findLongRB;
     private javax.swing.JTextField findNameTF;
+    private javax.swing.JRadioButton findStringRB;
     private javax.swing.JRadioButton floatRB;
     private javax.swing.JRadioButton integerRB;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
