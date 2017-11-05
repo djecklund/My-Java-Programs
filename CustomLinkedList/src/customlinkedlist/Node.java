@@ -12,7 +12,12 @@ package customlinkedlist;
 public class Node {
     
     // Create the next Node object to link to
-    Node next;
+    Node nextString;
+    Node nextInt;
+    Node nextDouble;
+    Node nextChar;
+    Node nextFloat;
+    Node nextLong;
     
     // Create all the datatypes for the linked list
     String stringData;
