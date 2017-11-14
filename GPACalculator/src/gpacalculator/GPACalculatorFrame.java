@@ -85,6 +85,13 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         removeClassList = new javax.swing.JList<>();
         removeClassButton = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        exportCB = new javax.swing.JComboBox<>();
+        exportButton = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        exportSampleTA = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculate your GPA");
@@ -331,6 +338,69 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Add/Remove Classes", jPanel1);
 
+        jLabel5.setText("Choose a format to export to:");
+
+        exportCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Excel 2007 & up (xlsx extension)", "Excel older (xls extension)", "Text file (tab delimited)", "Text file (comma separated)", "Text file (pipe delimited)" }));
+        exportCB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportCBActionPerformed(evt);
+            }
+        });
+
+        exportButton.setText("Export");
+        exportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportButtonActionPerformed(evt);
+            }
+        });
+
+        exportSampleTA.setEditable(false);
+        exportSampleTA.setColumns(20);
+        exportSampleTA.setRows(5);
+        exportSampleTA.setText("No way to show a sample of what an excel spreadsheet would look like...");
+        jScrollPane3.setViewportView(exportSampleTA);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Sample of the Data:");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(exportCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(exportButton))
+                        .addGap(0, 283, Short.MAX_VALUE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(exportCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addGap(8, 8, 8)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(exportButton)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Export", jPanel6);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -507,6 +577,27 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_pickSubjectCBItemStateChanged
 
+    private void exportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportButtonActionPerformed
+        
+        Export export = new Export();
+        export.exportToFile(classInfo, exportCB.getSelectedItem().toString());
+        
+    }//GEN-LAST:event_exportButtonActionPerformed
+
+    private void exportCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportCBActionPerformed
+        
+        exportSampleTA.setText("");
+        
+        Export export = new Export();
+        String exportSampleData[] = export.giveASample(classInfo, exportCB.getSelectedItem().toString()).split(";");
+        
+        for(int i = 0; i < exportSampleData.length; i++){
+            exportSampleTA.append(exportSampleData[i]);
+            exportSampleTA.append("\n");
+        }
+        
+    }//GEN-LAST:event_exportCBActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -627,19 +718,26 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
     private javax.swing.JButton addModClassButton;
     private javax.swing.JTextField classTitleTF;
     private javax.swing.JTextField creditHoursTF;
+    private javax.swing.JButton exportButton;
+    private javax.swing.JComboBox<String> exportCB;
+    private javax.swing.JTextArea exportSampleTA;
     private javax.swing.JLabel gpaLBL;
     private javax.swing.JComboBox<String> gradeCB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> pickSubjectCB;
     private javax.swing.JButton removeClassButton;
