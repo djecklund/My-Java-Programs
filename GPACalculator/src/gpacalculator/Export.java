@@ -33,7 +33,7 @@ public class Export {
         // Check to see what selection the user has made in the export combo box.
         switch(export){
             // The user selected the newer version of excel to export to
-            case "Excel 2007 & up (xlsx extension)":
+            case "Excel (xlsx extension)":
                 
                 // Path where file will be written
                 String resultsPath = "Exports/Class Info.xlsx";
@@ -106,7 +106,7 @@ public class Export {
                 break;
             
             // User selected the older excel format
-            case "Excel older (xls extension)":
+            case "Excel (xls extension)":
                 
                 try{
                     // Create the workbook and sheet
@@ -253,10 +253,10 @@ public class Export {
         switch(export){
             
             // If user selects any of the excel formats, tell the user that you cannot show them a sample
-            case "Excel 2007 & up (xlsx extension)":
+            case "Excel (xlsx extension)":
                 sample = "No way to show a sample of what an excel spreadsheet would look like...";
                 break;
-            case "Excel older (xls extension)":
+            case "Excel (xls extension)":
                 sample = "No way to show a sample of what an excel spreadsheet would look like...";
                 break;
             

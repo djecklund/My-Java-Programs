@@ -496,7 +496,7 @@
                                   </Group>
                                   <Component id="exportButton" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="283" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="305" max="32767" attributes="0"/>
                           </Group>
                           <Component id="jLabel6" alignment="0" max="32767" attributes="0"/>
                       </Group>
@@ -533,8 +533,8 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="5">
-                    <StringItem index="0" value="Excel 2007 &amp; up (xlsx extension)"/>
-                    <StringItem index="1" value="Excel older (xls extension)"/>
+                    <StringItem index="0" value="Excel (xlsx extension)"/>
+                    <StringItem index="1" value="Excel (xls extension)"/>
                     <StringItem index="2" value="Text file (tab delimited)"/>
                     <StringItem index="3" value="Text file (comma separated)"/>
                     <StringItem index="4" value="Text file (pipe delimited)"/>

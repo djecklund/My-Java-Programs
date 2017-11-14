@@ -340,7 +340,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
 
         jLabel5.setText("Choose a format to export to:");
 
-        exportCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Excel 2007 & up (xlsx extension)", "Excel older (xls extension)", "Text file (tab delimited)", "Text file (comma separated)", "Text file (pipe delimited)" }));
+        exportCB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Excel (xlsx extension)", "Excel (xls extension)", "Text file (tab delimited)", "Text file (comma separated)", "Text file (pipe delimited)" }));
         exportCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exportCBActionPerformed(evt);
@@ -379,7 +379,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(exportCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(exportButton))
-                        .addGap(0, 283, Short.MAX_VALUE))
+                        .addGap(0, 305, Short.MAX_VALUE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -579,6 +579,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
 
     private void exportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportButtonActionPerformed
         
+        // Export the data to a user specified format
         Export export = new Export();
         export.exportToFile(classInfo, exportCB.getSelectedItem().toString());
         
@@ -588,6 +589,7 @@ public class GPACalculatorFrame extends javax.swing.JFrame {
         
         exportSampleTA.setText("");
         
+        // Give the user a sampling of what their data would look like in that format
         Export export = new Export();
         String exportSampleData[] = export.giveASample(classInfo, exportCB.getSelectedItem().toString()).split(";");
         
