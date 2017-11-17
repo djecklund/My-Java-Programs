@@ -6,13 +6,14 @@
 package gpacalculator;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import jxl.Cell;
-import jxl.Sheet;
-import jxl.Workbook;
-import jxl.read.biff.BiffException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -28,48 +29,50 @@ public class CollectClassInfo {
     
     public void collectClassInfo(){
         
-        String pathway = "Grades/Class Info.xls";
-        
         try{
             
-            File classInfoExcel = new File(pathway);        
-            Workbook classWB = Workbook.getWorkbook(classInfoExcel);
-            Sheet classSheet = classWB.getSheet(0);
+            File classInformation = new File("Grades/Class Info.xlsx");
+            FileInputStream input = new FileInputStream(classInformation);
             
-            int rows = classSheet.getRows();
+            Workbook classWB = new XSSFWorkbook(input);
+            Sheet classSheet = classWB.getSheetAt(0);
             
-            // Determine if the spreadsheet is missing
-            if(classInfoExcel.exists()){
-                if(pathway.endsWith(".xls")){
-                    
-                    // Loop through the excel spreadsheet and populate the classInfo ArrayList with the
-                    // data collected from each row.
-                    for(int i = 1; i < rows; i ++){
-                        
-                        Cell subject = classSheet.getCell(0,i);
-                        Cell title = classSheet.getCell(1, i);
-                        Cell grade = classSheet.getCell(2,i);
-                        Cell creditHours = classSheet.getCell(3,i);
-                        
-                        ClassInfo info = new ClassInfo();
-                        info.setSubject(subject.getContents());
-                        info.setTitle(title.getContents());
-                        info.setGrade(grade.getContents().charAt(0));
-                        info.setCreditHours(Integer.parseInt(creditHours.getContents()));
-                        info.setQualityPoints();
-
-                        classInfo.add(info);
-                        
-                    }
-                    
+            Row row;
+            
+            // Loop through the excel spreadsheet and populate the classInfo ArrayList with the
+            // data collected from each row.
+            for(int rowIndex = 1; rowIndex <= classSheet.getLastRowNum(); rowIndex++){
+                ClassInfo info = new ClassInfo();
+                row = classSheet.getRow(rowIndex);
+                
+                Cell subjectCell = row.getCell(0);
+                Cell titleCell = row.getCell(1);
+                Cell gradeCell = row.getCell(2);
+                Cell creditHourCell = row.getCell(3);
+                
+                info.setSubject(subjectCell.getStringCellValue());
+                info.setTitle(titleCell.getStringCellValue());
+                info.setGrade(gradeCell.getStringCellValue().toCharArray()[0]);
+                
+                if(creditHourCell.getCellType() == Cell.CELL_TYPE_STRING){
+                    int creditHours = Integer.parseInt(creditHourCell.getStringCellValue());
+                    info.setCreditHours(creditHours);
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "The excel spreadsheet needs to have a .xls extension.");
+                    info.setCreditHours((int)creditHourCell.getNumericCellValue());
                 }
+                
+                info.setQualityPoints();
+                
+                classInfo.add(info);
+                
             }
             
-        }catch(IOException | BiffException biff){
-
+            classWB.close();
+            input.close();
+            
+        }catch(IOException io){
+            
         }
     }
     
