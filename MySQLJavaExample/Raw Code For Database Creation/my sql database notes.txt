@@ -1,0 +1,978 @@
+Creating the tables:
+
+EMPLOYEE:
+create table EMPLOYEE(
+EID number(5),
+Fname varchar2(30) constraint EMP_Fname_CH not null,
+Lname varchar2(30) constraint EMP_Lname_CH not null,
+Sex char(1) constraint EMP_Sex_CH not null,
+DOB varchar2(10) constraint EMP_DOB_CH not null,
+Job_title varchar2(50) constraint Job_CH not null,
+Salary number(7) constraint Salary_CH not null,
+constraint EMP_EID_Primary Primary key (EID));
+
+PATIENT:
+create table PATIENT(
+Pat_ID number(5) ,
+Fname varchar2(30) constraint Fname_CH not null,
+Lname varchar2(30) constraint Lname_CH not null,
+Sex char(1) constraint Sex_CH not null,
+DOB varchar2(10) constraint DOB_CH not null,
+Phone_num number(10) constraint Phone_CH not null,
+Policy_num varchar2(9) constraint Policy_CH not null,
+constraint PatID_Primary primary key(Pat_ID));
+
+HAS:
+create table Has(
+Iname varchar(40) constraint Has_Iname_CH not null,
+Policy_num varchar2(10),
+constraint Policy_num_primary primary key(Policy_num),
+constraint Has_Iname_Foreign foreign key(Iname) references Insurance(Iname) on delete cascade);
+
+INSURANCE:
+create table INSURANCE(
+Iname varchar2(40),
+Copay number(5) constraint Copay_CH not null,
+percent_of_pay number(3) constraint Percent_Pay_CH not null,
+Accept varchar2(3) constraint Accept_CH not null,
+constraint Iname_Primary primary key(I_name));
+
+DIAGNOSIS:
+create table DIAGNOSIS(
+Diag_num number(5) constraint Diag_not_null,
+Diagnosis varchar2(40),
+constraint Diag_primary primary key(Diag_num));
+
+MEDICATION:
+create table Medication(
+Med_num number(5),
+Med_name varchar2(40) constraint Med_name_CH not null,
+CostPerDosage number(5) constraint Dosage_Cost_CH not null,
+constraint MED_Mednum_Primary primary key(Med_num));
+
+PROCEDURE:
+create table Procedure(
+Pro_num number(5),
+Pro_name varchar2(40) constraint PRO_Proname_CH not null,
+PCost number(4) constraint PRO_Cost_CH not null,
+constraint PRO_Pronum_Primary primary key(Pro_num));
+
+VISITS:
+create table Visits(
+VID varchar2(6),
+VDate varchar2(10) constraint VDate_CH not null,
+VTime varchar2(4) constraint VTime_CH not null,
+EID number(5) constraint VISITS_EID_CH not null,
+Patient_ID number(5) constraint VISITS_PatientID_CH not null,
+Diag_num number(5) constraint VISITS_Diagnum_CH not null,
+TotalCost number(8),
+constraint VISITS_VID_Primary primary key(VID),
+constraint VISITS_EID_Foreign foreign key(EID) references Employee(EID) on delete cascade,
+constraint VISITS_PatientID_Foreign foreign key(Patient_ID) references Patient(Pat_ID) on delete cascade,
+constraint VISITS_Diagnum_Foreign foreign key(Diag_num) references Diagnosis(Diagnum) on delete cascade);
+
+VISITMED:
+create table VisitMed(
+VID varchar2(6),
+Med_num number(5) constraint VisitMED_Mednum_CH not null,
+Dosage varchar2(20) constraint VisitMED_Dosage_CH not null,
+Duration varchar(10) constraint VisitMED_duration_CH not null,
+constraint VisitMED_VID_Foreign foreign key(VID) references Visits(VID) on delete cascade,
+constraint VisitMED_Mednum_Foreign foreign key(Med_num) references Medication(Med_num) on delete cascade,
+constraint VisitMED_VIDMEDnum_Primary primary key(VID, Med_num));
+
+VISITPRO:
+create table VisitPro(
+VID varchar2(6),
+Pro_num number(5),
+constraint VisitPRO_VIDPronum_Primary primary key(VID, Pro_num),
+constraint VisitPRO_VID_Foreign foreign key(VID) references Visits(VID) on delete cascade,
+constraint VisitPRO_Pronum_Foreign foreign key(Pro_num) references Procedure(Pro_num) on delete cascade);
+
+_________________________________________________________________________________________________________________________________________
+
+Populating the tables:
+
+EMPLOYEE:
+insert into EMPLOYEE values(
+30001,
+'Pam',
+'Morrin',
+'F',
+'01/12/1984',
+'Physician',
+110000);
+
+insert into EMPLOYEE values(
+30002,
+'Charles',
+'Evans',
+'M',
+'04/23/1983',
+'Physician',
+115000);
+
+insert into EMPLOYEE values(
+30003,
+'Erik',
+'Miller',
+'M',
+'12/05/1956',
+'Physician',
+200150);
+
+insert into EMPLOYEE values(
+30004,
+'Megan',
+'Macdonald',
+'F',
+'05/18/1995',
+'Registered Nurse',
+45500);
+
+insert into EMPLOYEE values(
+30005,
+'Roger',
+'Smith',
+'M',
+'03/12/1993',
+'Registered Nurse',
+45000);
+
+insert into EMPLOYEE values(
+30006,
+'Carol',
+'Jackson',
+'F',
+'08/12/1978',
+'Registered Nurse',
+62200);
+
+insert into EMPLOYEE values(
+30007,
+'Kevin',
+'Alexander',
+'M',
+'09/15/1990',
+'X-Ray technician',
+46400);
+
+insert into EMPLOYEE values(
+30008,
+'Ruth',
+'Simons',
+'F',
+'10/08/1982',
+'X-Ray technician',
+52480);
+__________________________________________________________________________________________________________________________________________
+
+PATIENT:
+insert into PATIENT values(
+10001,
+'Megan',
+'Fox',
+'F',
+'01/13/1998',
+'5019322341',
+'TRI-001');
+
+insert into PATIENT values(
+10002,
+'Robert',
+'Herjavec',
+'M'
+'09/14/1962',
+'5019332242',
+'RDI-001');
+
+insert into PATIENT values(
+10003,
+'Kevin',
+'O''Leary',
+'M'
+'07/09/1954',
+'5019343232',
+'RDI-002');
+
+insert into PATIENT values(
+10004,
+'Barbara', 
+'Corcoran', 
+'F',
+'03/12/1949',
+'5019354321',
+'RDI-003');
+
+insert into PATIENT values(
+10005,
+'Jack',
+'Columbus',
+'M',
+'05/30/1944',
+'8093275473',
+'TRI-002');
+
+insert into PATIENT values(
+10006,
+'Lana',
+'Rogers',
+'F',
+'08/15/1957',
+'5018952446',
+'IWYMI-001');
+
+insert into PATIENT values(
+10007,
+'Betty',
+'Brennan',
+'F',
+'08/15/1980',
+'6052619932',
+'TRI-001');
+
+insert into PATIENT values(
+10008,
+'Frances',
+'Mcgovern',
+'M',
+'01/04/1993',
+'5017932176',
+'IWYMI-002');
+
+insert into PATIENT values(
+10009,
+'Charles',
+'Legrand',
+'M',
+'05/09/1985',
+'5017615881',
+'TRI-004');
+
+insert into PATIENT values(
+10010,
+'Amy',
+'Pierce',
+'F',
+'01/02/1988',
+'5016650369',
+'IWYMI-003');
+
+insert into PATIENT values(
+10011,
+'Maria',
+'Docherty',
+'F',
+'11/18/1978',
+'3044296639',
+'TRI-005');
+
+insert into PATIENT values(
+10012,
+'Darin',
+'Kalinina',
+'M',
+'04/19/2005',
+'5165810321',
+'RDI-004');
+
+insert into PATIENT values(
+10013,
+'Jarod',
+'Owens',
+'M',
+'03/12/1993',
+'5019992100',
+'IWYMI-004');
+
+insert into PATIENT values(
+10014,
+'Mathew',
+'Gilbert',
+'M',
+'06/03/1990',
+'8094442100',
+'TRI-004');
+
+insert into PATIENT values(
+10015,
+'Irene',
+'Parish',
+'F',
+'12/31/2000',
+'5018821314',
+'IWYMI-005');
+
+insert into PATIENT values(
+10016,
+'Ruth',
+'Trapp',
+'F',
+'10/09/2001',
+'5015609999',
+'RDI-005');
+
+insert into PATIENT values(
+10017,
+'Robert',
+'Thomas',
+'M',
+'05/09/1976',
+'6058845600',
+'IWYMI-006');
+
+insert into PATIENT values(
+10018,
+'Susie',
+'Locklear',
+'F',
+'02/01/1990',
+'8199931213',
+'TRI-007');
+
+insert into PATIENT values(
+10019,
+'Donald',
+'Marte',
+'M',
+'07/14/1956',
+'5012223333',
+'RDI-006');
+
+insert into PATIENT values(
+10020,
+'Joyce',
+'Guerra',
+'F',
+'12/03/2005',
+'5012345678',
+'IWYMI-007');
+
+_______________________________________________________________________________________________________________________________
+
+HAS:
+
+insert into Has values(
+'Tricare',
+'TRI-001');
+
+insert into Has values(
+'Tricare',
+'TRI-002');
+
+insert into Has values(
+'Tricare',
+'TRI-003');
+
+insert into Has values(
+'Tricare',
+'TRI-004');
+
+insert into Has values(
+'Tricare',
+'TRI-005');
+
+insert into Has values(
+'Tricare',
+'TRI-006');
+
+insert into Has values(
+'Tricare',
+'TRI-007');
+
+insert into Has values(
+'RichDudeInsurance',
+'RDI-001');
+
+insert into Has values(
+'RichDudeInsurance',
+'RDI-002');
+
+insert into Has values(
+'RichDudeInsurance',
+'RDI-003');
+
+insert into Has values(
+'RichDudeInsurance',
+'RDI-004');
+
+insert into Has values(
+'RichDudeInsurance',
+'RDI-005');
+
+insert into Has values(
+'RichDudeInsurance',
+'RDI-006');
+
+insert into Has values(
+'IWantYourMoneyInsurance',
+'IWYMI-001');
+
+insert into Has values(
+'IWantYourMoneyInsurance',
+'IWYMI-002');
+
+insert into Has values(
+'IWantYourMoneyInsurance',
+'IWYMI-003');
+
+insert into Has values(
+'IWantYourMoneyInsurance',
+'IWYMI-004');
+
+insert into Has values(
+'IWantYourMoneyInsurance',
+'IWYMI-005');
+
+insert into Has values(
+'IWantYourMoneyInsurance',
+'IWYMI-006');
+
+insert into Has values(
+'IWantYourMoneyInsurance',
+'IWYMI-007');
+
+___________________________________________________________________________________________________________
+
+DIAGNOSIS:
+
+insert into Diagnosis values(
+50001,
+'COPD');
+
+insert into Diagnosis values(
+50002,
+'GERD');
+
+insert into Diagnosis values(
+50003,
+'Influenza');
+
+insert into Diagnosis values(
+50004,
+'Insomnia');
+
+insert into Diagnosis values(
+50005,
+'RAD');
+
+insert into Diagnosis values(
+50006,
+'Depression');
+
+insert into Diagnosis values(
+50007,
+'Acute back pain(lumbar)');
+
+insert into Diagnosis values(
+50008,
+'Acute chest pain');
+
+insert into Diagnosis values(
+50009,
+'Acne');
+
+insert into Diagnosis values(
+50010,
+'Acute back pain(thoracic)');
+
+insert into Diagnosis values(
+50011,
+'ADHD');
+
+_____________________________________________________________________________________________________________
+
+MEDICATION:
+
+insert into Medication values(
+20001,
+'Albuterol',
+100);
+
+insert into Medication values(
+20002,
+'Tylenol',
+10);
+
+insert into Medication values(
+20003,
+'Nexium',
+25);
+
+insert into Medication values(
+20004,
+'Trazodone',
+5);
+
+insert into Medication values(
+20005,
+'Motrin',
+15);
+
+insert into Medication values(
+20006,
+'Adderall',
+10);
+
+insert into Medication values(
+20007,
+'Astelin',
+40);
+
+_______________________________________________________________________________________________________________
+
+PROCEDURE:
+
+insert into Procedure values(
+40001,
+'Physical',
+50);
+
+insert into Procedure values(
+40002,
+'Neurological Exam',
+100);
+
+insert into Procedure values(
+40003,
+'X-Ray',
+100);
+
+insert into Procedure values(
+40004,
+'Allergy Test',
+75);
+
+insert into Procedure values(
+40005,
+'Basic Consultation',
+45);
+
+insert into Procedure values(
+40006,
+'EKG',
+55);
+
+_____________________________________________________________________________________________________________________
+
+VISITS:
+
+insert into Visits values(
+'PV-1',
+'01/26/2016',
+'1000',
+30001,
+10001,
+50001,
+0);
+
+insert into Visits values(
+'PV-2',
+'01/29/2016',
+'1000',
+30001,
+10002,
+50002,
+0);
+
+insert into Visits values(
+'PV-3',
+'01/25/2016',
+'0900',
+30001,
+10003,
+50003,
+0);
+
+insert into Visits values(
+'PV-4',
+'01/25/2016',
+'1200',
+30001,
+10004,
+50001,
+0);
+
+insert into Visits values(
+'PV-5',
+'01/27/2016',
+'1600',
+30001,
+10005,
+50004,
+0);
+
+insert into Visits values(
+'PV-6',
+'01/27/2016',
+'1500',
+30001,
+10006,
+50005,
+0);
+
+insert into Visits values(
+'PV-7',
+'01/28/2016',
+'1500',
+30002,
+10007,
+50002,
+0);
+
+insert into Visits values(
+'PV-8',
+'01/28/2016',
+'1700',
+30002,
+10008,
+50006,
+0);
+
+insert into Visits values(
+'PV-9',
+'01/25/2016',
+'1100',
+30002,
+10009,
+50006,
+0);
+
+insert into Visits values(
+'PV-10',
+'01/25/2016',
+'1400',
+30002,
+10010,
+50007,
+0);
+
+insert into Visits values(
+'PV-11',
+'01/26/2016',
+'0900',
+30002,
+10011,
+50008,
+0);
+
+insert into Visits values(
+'PV-12',
+'01/26/2016',
+'1400',
+30002,
+10012,
+50009,
+0);
+
+insert into Visits values(
+'PV-13',
+'01/28/2016',
+'1200',
+30002,
+10013,
+50002,
+0);
+
+insert into Visits values(
+'PV-14',
+'01/27/2016',
+'1700',
+30003,
+10014,
+50001,
+0);
+
+insert into Visits values(
+'PV-15',
+'01/27/2016',
+'1500',
+30003,
+10015,
+50006,
+0);
+
+insert into Visits values(
+'PV-16',
+'01/27/2016',
+'1300',
+30003,
+10016,
+50005,
+0);
+
+insert into Visits values(
+'PV-17',
+'01/28/2016',
+'1000',
+30003,
+10017,
+50010,
+0);
+
+insert into Visits values(
+'PV-18',
+'01/25/2016',
+'1500',
+30003,
+10018,
+50003,
+0);
+
+insert into Visits values(
+'PV-19',
+'01/25/2016',
+'1600',
+30003,
+10019,
+50011,
+0);
+
+insert into Visits values(
+'PV-20',
+'01/26/2016',
+'1500',
+30003,
+10020,
+50001,
+0);
+
+______________________________________________________________________________________________________
+
+VISITMED:
+
+insert into VisitMed values(
+'PV-1',
+20001,
+'90 mcg/inh',
+'3 months');
+
+insert into VisitMed values(
+'PV-1',
+20007,
+'30 ml',
+'1 month');
+
+insert into VisitMed values(
+'PV-2',
+20003,
+'40 mg',
+'2 months');
+
+insert into VisitMed values(
+'PV-4',
+20001,
+'90 mcg/inh',
+'3 months');
+
+insert into VisitMed values(
+'PV-5',
+20004,
+'50 mg',
+'1 month');
+
+insert into VisitMed values(
+'PV-7',
+20003,
+'40 mg',
+'2 months');
+
+insert into VisitMed values(
+'PV-9',
+20004,
+'50 mg',
+'1 month');
+
+insert into VisitMed values(
+'PV-10',
+20005,
+'800 mg',
+'3 months');
+
+insert into VisitMed values(
+'PV-11',
+20002,
+'500 mg',
+'3 months');
+
+insert into VisitMed values(
+'PV-13',
+20003,
+'40 mg',
+'2 months');
+
+insert into VisitMed values(
+'PV-14',
+20001,
+'90 mcg/inh',
+'3 months');
+
+insert into VisitMed values(
+'PV-15',
+20004,
+'50 mg',
+'1 month');
+
+insert into VisitMed values(
+'PV-16',
+20001,
+'90 mcg/inh',
+'3 months');
+
+insert into VisitMed values(
+'PV-17',
+20007,
+'30 ml',
+'1 month');
+
+insert into VisitMed values(
+'PV-17',
+20005,
+'800 mg',
+'3 months');
+
+insert into VisitMed values(
+'PV-19',
+20006,
+'30 mg',
+'1 month');
+
+__________________________________________________________________________________________________________
+
+VISITPRO:
+
+insert into VisitPro values(
+'PV-1',
+40003);
+
+insert into VisitPro values(
+'PV-1',
+40005);
+
+insert into VisitPro values(
+'PV-2',
+40005);
+
+insert into VisitPro values(
+'PV-3',
+40005);
+
+insert into VisitPro values(
+'PV-4',
+40005);
+
+insert into VisitPro values(
+'PV-5',
+40005);
+
+insert into VisitPro values(
+'PV-6',
+40005);
+
+insert into VisitPro values(
+'PV-7',
+40005);
+
+insert into VisitPro values(
+'PV-8',
+40005);
+
+insert into VisitPro values(
+'PV-9',
+40005);
+
+insert into VisitPro values(
+'PV-10',
+40001);
+
+insert into VisitPro values(
+'PV-10',
+40003);
+
+insert into VisitPro values(
+'PV-10',
+40005);
+
+insert into VisitPro values(
+'PV-11',
+40001);
+
+insert into VisitPro values(
+'PV-11',
+40005);
+
+insert into VisitPro values(
+'PV-11',
+40006);
+
+insert into VisitPro values(
+'PV-12',
+40004);
+
+insert into VisitPro values(
+'PV-12',
+40005);
+
+insert into VisitPro values(
+'PV-13',
+40005);
+
+insert into VisitPro values(
+'PV-14',
+40005);
+
+insert into VisitPro values(
+'PV-15',
+40005);
+
+insert into VisitPro values(
+'PV-16',
+40004);
+
+insert into VisitPro values(
+'PV-16',
+40005);
+
+insert into VisitPro values(
+'PV-17',
+40001);
+
+insert into VisitPro values(
+'PV-17',
+40003);
+
+insert into VisitPro values(
+'PV-17',
+40005);
+
+insert into VisitPro values(
+'PV-18',
+40003);
+
+insert into VisitPro values(
+'PV-18',
+40005);
+
+insert into VisitPro values(
+'PV-19',
+40002);
+
+insert into VisitPro values(
+'PV-19',
+40005);
+
+insert into VisitPro values(
+'PV-20',
+40001);
+
+insert into VisitPro values(
+'PV-20',
+40003);
+
+insert into VisitPro values(
+'PV-20',
+40004);
+
+insert into VisitPro values(
+'PV-20',
+40005);
