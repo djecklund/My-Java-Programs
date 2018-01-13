@@ -13,5 +13,5 @@ This repository contains the Java Programs I've built
   <li><b>Who wants to be a Millionaire</b> - This is my version of the famous game "Who wants to be a millionaire".</li>
   <li><b>Othello</b> - This is my version of the game "Othello". I worked on this a while back. It's not very well made, but is still a cool game.</li>
   <li><b>MySQLJavaExample</b> - This program takes data from a MySQL database that I created and displays the data. The database was originally created as a school project. I wanted to challenge myself by creating something different from what I'm used to creating. This program allowed me to mix my knowledge of Java and SQL into one program.<br>
-    <b>Future updates: </b>I would like to add functionality for the user to add/remove/update data on any of the tables. I would also like to do more research into giving the user the ability to create their own custom queries. (The user may want to look up information on a single patient or employee)</li>
+    <b>Future updates: </b>I would like to add functionality for the user to add/remove/update data on any of the tables. I would also like to do more research into giving the user the ability to create their own custom queries. (The user may want to look up information on a single patient or employee) I also plan to do updates to the user interface as it is very plain.</li>
 </ol>
