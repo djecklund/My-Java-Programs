@@ -14,4 +14,10 @@ This repository contains the Java Programs I've built
   <li><b>Othello</b> - This is my version of the game "Othello". I worked on this a while back. It's not very well made, but is still a cool game.</li>
   <li><b>MySQLJavaExample</b> - This program takes data from a MySQL database that I created and displays the data. The database was originally created as a school project. I wanted to challenge myself by creating something different from what I'm used to creating. This program allowed me to mix my knowledge of Java and SQL into one program.<br>
     <b>Future updates: </b>I would like to add functionality for the user to add/remove/update data on any of the tables. I would also like to do more research into giving the user the ability to create their own custom queries. (The user may want to look up information on a single patient or employee) I also plan to do updates to the user interface as it is very plain.</li>
+  <li><b>JavaDocumentEditor</b> - This program is my version of a text editor. The program allows the user to type text into a text pane, and open multiple types of files(.txt, .csv, .tsv, .xls, .xlsx) into the text pane. The program does have an undo function, but it is incomplete. I am still figuring out the logic for the undo function. <br>
+    <b>Future updates</b>:<br> <ul><li>Get undo function working properly.</li>
+    <li>Add functionality to the save menu button.</li>
+    <li>Fix issues with opening .xlsx files. (some files give null pointer exception errors when trying to open)</li>
+    </ul>
+  </li>
 </ol>
