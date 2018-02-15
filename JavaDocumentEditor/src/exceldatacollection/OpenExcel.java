@@ -98,13 +98,28 @@ public class OpenExcel {
 
                                 switch (fileType) {
                                     case "tab":
-                                        temp += rowData[i] + "\t";
+                                        if(i < numberOfColumns - 1){
+                                            temp += rowData[i] + "\t";
+                                        }
+                                        else{
+                                            temp += rowData[i];
+                                        }
                                         break;
                                     case "comma":
-                                        temp += rowData[i] + ",";
+                                        if(i < numberOfColumns - 1){
+                                            temp += rowData[i] + ",";
+                                        }
+                                        else{
+                                            temp += rowData[i];
+                                        }
                                         break;
                                     case "pipe":
-                                        temp += rowData[i] + "|";
+                                        if(i < numberOfColumns - 1){
+                                            temp += rowData[i] + "|";
+                                        }
+                                        else{
+                                            temp += rowData[i];
+                                        }
                                         break;
                                     default:
                                         break;

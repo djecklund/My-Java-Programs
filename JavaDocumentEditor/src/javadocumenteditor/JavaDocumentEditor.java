@@ -127,6 +127,7 @@ public class JavaDocumentEditor extends javax.swing.JFrame {
         
         // Open the file
         menuitems.Open open = new menuitems.Open();
+        menuitems.Save changeName = new menuitems.Save();
         
         // Open a file chooser dialog box to allow the user to select the document they wish
         // to open.
@@ -138,9 +139,12 @@ public class JavaDocumentEditor extends javax.swing.JFrame {
         textArea.setText("");
         
         // Write the contents of the document to the text area.
+        // After writing the contents of the file to the text pane, set the title
+        // of the program to the file name.
         for(int i = openText.size() - 1; i >= 0; i--){
             try {
                 doc.insertString(0, openText.get(i) + "\n", null);
+                this.setTitle(open.fileName);
             } catch (BadLocationException ex) {
                 Logger.getLogger(JavaDocumentEditor.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -191,16 +195,20 @@ public class JavaDocumentEditor extends javax.swing.JFrame {
             textArea.setText(undoData.undoData.get(tempIndex));
         }
         
-//        for(int i = 0; i < undoData.undoData.size(); i++){
-//            System.out.println(undoData.undoData.get(i));
-//        }
-        
     }//GEN-LAST:event_undoMenItemActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
         
+        // Save the text to a specified file and file type. (Excel, text, comma separated)
         menuitems.Save save = new menuitems.Save();
-        save.saveDocument();
+        if(undoData.undoData.size() > 0){
+            save.saveDocument(textArea.getText());
+            
+            // Set the title of the document to the file name. The file name was 
+            // retreived by spliting the full path by each "\" and saving the last 
+            // part of the split file path to the fileName variable.
+            this.setTitle(save.fileName);
+        }
         
     }//GEN-LAST:event_saveMenuItemActionPerformed
 

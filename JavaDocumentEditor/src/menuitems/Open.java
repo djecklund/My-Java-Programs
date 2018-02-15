@@ -25,10 +25,12 @@ import jxl.read.biff.BiffException;
 public class Open {
     
     private String fullPath;
+    public String fileName;
+    private String[] temp;
     private ArrayList<String> text;
     
     public Open(){
-        fullPath = "";
+        fullPath = fileName = "";
         text = new ArrayList<>();
     }
     
@@ -41,6 +43,7 @@ public class Open {
         FileNameExtensionFilter textFilter = new FileNameExtensionFilter("Text", "txt");
         FileNameExtensionFilter csvFilter = new FileNameExtensionFilter("CSV", "csv");
         FileNameExtensionFilter tsvFilter = new FileNameExtensionFilter("TSV", "tsv");
+        FileNameExtensionFilter pipeFilter = new FileNameExtensionFilter("PIPE", "pip");
         FileNameExtensionFilter xlsFilter = new FileNameExtensionFilter("XLS", "xls");
         FileNameExtensionFilter xlsxFilter = new FileNameExtensionFilter("XLSX", "xlsx");
         
@@ -48,6 +51,7 @@ public class Open {
         chooser.setFileFilter(textFilter);
         chooser.addChoosableFileFilter(csvFilter);
         chooser.addChoosableFileFilter(tsvFilter);
+        chooser.addChoosableFileFilter(pipeFilter);
         chooser.addChoosableFileFilter(xlsFilter);
         chooser.addChoosableFileFilter(xlsxFilter);
         
@@ -56,11 +60,71 @@ public class Open {
         int returnVal = chooser.showOpenDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION){
             fullPath = chooser.getSelectedFile().getAbsolutePath();
+            
+            // Split up the full path by it's backslashes in order to determine what the
+            // file name is. The file name will be placed at the top of the document editor.
+            // This will help the user by showing them what document they are working on.
+            temp = fullPath.split("\\\\");
+            
+            // Add the extension to the file name
+            String fileExtension = chooser.getFileFilter().getDescription();
+            switch(fileExtension){
+                case "Text":
+                    if(fullPath.endsWith(".txt")){
+                        fileName = temp[temp.length - 1];
+                    }
+                    else{
+                        fileName = temp[temp.length - 1] + ".txt";
+                    }
+                    break;
+                case "CSV":
+                    if(fullPath.endsWith(".csv")){
+                        fileName = temp[temp.length - 1];
+                    }
+                    else{
+                        fileName = temp[temp.length - 1] + ".csv";
+                    }
+                    break;
+                case "TSV":
+                    if(fullPath.endsWith(".tsv")){
+                        fileName = temp[temp.length - 1];
+                    }
+                    else{
+                        fileName = temp[temp.length - 1] + ".tsv";
+                    }
+                    break;
+                case "PIPE":
+                    if(fullPath.endsWith(".pip")){
+                        fileName = temp[temp.length - 1];
+                    }
+                    else{
+                        fileName = temp[temp.length - 1] + ".pip";
+                    }
+                    break;
+                case "XLS":
+                    if(fullPath.endsWith(".xls")){
+                        fileName = temp[temp.length - 1];
+                    }
+                    else{
+                        fileName = temp[temp.length - 1] + ".xls";
+                    }
+                    break;
+                case "XLSX":
+                    if(fullPath.endsWith(".xlsx")){
+                        fileName = temp[temp.length - 1];
+                    }
+                    else{
+                        fileName = temp[temp.length - 1] + ".xlsx";
+                    }
+                    break;
+            }
+            
         }
         
         // Determine what kind of document the user selected and get the data from
         // the file 
-        if(fullPath.endsWith(".txt") || fullPath.endsWith(".csv") || fullPath.endsWith(".tsv")){
+        if(fullPath.endsWith(".txt") || fullPath.endsWith(".csv") || fullPath.endsWith(".tsv")
+                || fullPath.endsWith(".xml") || fullPath.endsWith(".pip")){
             openTextDocument();
         }
         else if(fullPath.endsWith(".xls")){
@@ -155,13 +219,28 @@ public class Open {
 
                                 switch (fileType) {
                                     case "tab":
-                                        temp += rowData[l] + "\t";
+                                        if(i < columns - 1){
+                                            temp += rowData[i] + "\t";
+                                        }
+                                        else{
+                                            temp += rowData[i];
+                                        }
                                         break;
                                     case "comma":
-                                        temp += rowData[l] + ",";
+                                        if(i < columns - 1){
+                                            temp += rowData[i] + ",";
+                                        }
+                                        else{
+                                            temp += rowData[i];
+                                        }
                                         break;
                                     case "pipe":
-                                        temp += rowData[l] + "|";
+                                        if(i < columns - 1){
+                                            temp += rowData[i] + "|";
+                                        }
+                                        else{
+                                            temp += rowData[i];
+                                        }
                                         break;
                                     default:
                                         break;
