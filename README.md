@@ -20,4 +20,5 @@ This repository contains the Java Programs I've built
     <li>Fix issues with opening .xlsx files. (some files give null pointer exception errors when trying to open)</li>
     </ul>
   </li>
+  <li><b>Top100Earners</b> - This program figures out who the Top 100 earners are in a group of people. In order to figure out the top 100 earners, the program reads through an excel spreadsheet that contains the names and income of each person. There are some people who are on the spreadsheet multiple times. (They got paid multiple times) The program adds the income from the duplicate to the original and removes the duplicate. The program then sorts the people from largest income to smallest. Lastly, the results are written to an excel spreadsheet.</li>
 </ol>
