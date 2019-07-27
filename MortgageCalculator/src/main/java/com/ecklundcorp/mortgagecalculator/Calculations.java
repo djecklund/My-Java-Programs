@@ -11,10 +11,11 @@ package com.ecklundcorp.mortgagecalculator;
  */
 public class Calculations {
     
-    public boolean determineIfNumber(String housePrice, String interest, String lifeOfLoan, String utilities, String taxes, String insurance, String HOA, String person1, String person2, String extraIncome){
+    public boolean determineIfNumber(String housePrice, String downPayment, String interest, String lifeOfLoan, String utilities, String taxes, String insurance, String HOA, String person1, String person2, String extraIncome){
         
         try{
             double hp = Double.parseDouble(housePrice);
+            double downPay = Double.parseDouble(downPayment);
             double in = Double.parseDouble(interest);
             double lol = Double.parseDouble(lifeOfLoan);
             double util = Double.parseDouble(utilities);
@@ -35,13 +36,13 @@ public class Calculations {
         return true;
     }
     
-    public double getDownPayment(String housePrice){
+    public double getDownPayment(String housePrice, String percent){
         
         double downPayment = 0.00;
         
         try{
             
-            downPayment = 0.2 * Double.parseDouble(housePrice);
+            downPayment = (Double.parseDouble(percent) / 100) * Double.parseDouble(housePrice);
             
         }catch(Exception e){
             return 0.00;

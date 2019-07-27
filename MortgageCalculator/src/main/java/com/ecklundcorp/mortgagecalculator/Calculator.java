@@ -82,12 +82,15 @@ public class Calculator extends javax.swing.JFrame {
         monthlyNetLBL = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         utilitiesTF = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        downPaymentTF = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         totalLBL = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         totalUtilLBL = new javax.swing.JLabel();
+        createMortgageReportButton = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         canIAffordItLBL = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -161,7 +164,7 @@ public class Calculator extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(HOATF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jLabel1.setText("House Price");
@@ -284,7 +287,7 @@ public class Calculator extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(person2IncomeTF)
                             .addComponent(extraIncomeTF)
-                            .addComponent(totalGrossLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(totalGrossLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
                             .addComponent(totalNetLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(monthlyNetLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
@@ -328,37 +331,56 @@ public class Calculator extends javax.swing.JFrame {
             }
         });
 
+        jLabel22.setText("Down payment (percent)");
+
+        downPaymentTF.setText("20");
+        downPaymentTF.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                downPaymentTFCaretUpdate(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(loanAmountLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(housePriceTF, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(downPaymentLBL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(annualInterestRateTF)
-                        .addComponent(lifeOfLoanTF)
-                        .addComponent(numberOfPaymentsPerYearLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(paymentPerPeriodLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(sumOfPaymentsLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(interestCostLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(utilitiesTF, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(downPaymentTF, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(113, 113, 113)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(housePriceTF, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(loanAmountLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(downPaymentLBL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(annualInterestRateTF)
+                                .addComponent(lifeOfLoanTF)
+                                .addComponent(numberOfPaymentsPerYearLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(paymentPerPeriodLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(sumOfPaymentsLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(interestCostLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(utilitiesTF, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(12, 12, 12)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -368,12 +390,20 @@ public class Calculator extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(housePriceTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel22)
+                            .addComponent(downPaymentTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(downPaymentLBL))
@@ -388,11 +418,8 @@ public class Calculator extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(lifeOfLoanTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(lifeOfLoanTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(numberOfPaymentsPerYearLBL))
@@ -412,8 +439,7 @@ public class Calculator extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
                             .addComponent(utilitiesTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -429,6 +455,13 @@ public class Calculator extends javax.swing.JFrame {
 
         totalUtilLBL.setText("$0.00");
 
+        createMortgageReportButton.setText("Create Mortgage Report");
+        createMortgageReportButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createMortgageReportButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -443,6 +476,10 @@ public class Calculator extends javax.swing.JFrame {
                     .addComponent(totalLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                     .addComponent(totalUtilLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(106, 106, 106))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(createMortgageReportButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -455,7 +492,9 @@ public class Calculator extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(totalUtilLBL))
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(createMortgageReportButton)
+                .addContainerGap())
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Can you afford it with your current income?"));
@@ -555,9 +594,9 @@ public class Calculator extends javax.swing.JFrame {
 
     private void utilitiesTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_utilitiesTFCaretUpdate
 
-        if(calc.determineIfNumber(housePriceTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
+        if(calc.determineIfNumber(housePriceTF.getText(), downPaymentTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
 
-            double downPayment = calc.getDownPayment(housePriceTF.getText());
+            double downPayment = calc.getDownPayment(housePriceTF.getText(), downPaymentTF.getText());
             downPaymentLBL.setText(money.format(downPayment));
             loanAmountLBL.setText(money.format(calc.getLoanAmount(housePriceTF.getText(), downPayment)));
             paymentPerPeriodLBL.setText(money.format(calc.getPaymentPerPeriod(Integer.parseInt(lifeOfLoanTF.getText()), Integer.parseInt(numberOfPaymentsPerYearLBL.getText()), Double.parseDouble(annualInterestRateTF.getText().replace("$", "").replace(",", "")), Double.parseDouble(loanAmountLBL.getText().replace("$", "").replace(",", "")))));
@@ -569,23 +608,33 @@ public class Calculator extends javax.swing.JFrame {
             totalNetLBL.setText(money.format(calc.getTotalNetIncome(Double.parseDouble(totalGrossLBL.getText().replace("$", "").replace(",", "")))));
             monthlyNetLBL.setText(money.format(Double.parseDouble(totalNetLBL.getText().replace("$", "").replace(",", "")) / 12));
             
-            double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
-            double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+            if(Double.parseDouble(person1IncomeTF.getText()) > 0 || Double.parseDouble(person2IncomeTF.getText()) > 0){
             
-            if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+                double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+                double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+
+                if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+
+                    canIAffordItLBL.setText("Yes");
+                    canIAffordTA.setText("You can afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
+                }
+                else{
+                    canIAffordItLBL.setText("No");
+                    canIAffordTA.setText("You can't afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
+                    + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                }
                 
-                canIAffordItLBL.setText("Yes");
-                canIAffordTA.setText("You can afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
             }
             else{
-                canIAffordItLBL.setText("No");
-                canIAffordTA.setText("You can't afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
-                + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                canIAffordItLBL.setText("Maybe?!?");
+                canIAffordTA.setText("");
             }
+            
+            createMortgageReportButton.setEnabled(true);
             
         }
         else{
@@ -599,15 +648,18 @@ public class Calculator extends javax.swing.JFrame {
             totalGrossLBL.setText("ERROR");
             totalNetLBL.setText("ERROR");
             monthlyNetLBL.setText("ERROR");
+            createMortgageReportButton.setEnabled(false);
+            canIAffordItLBL.setText("Maybe?!?");
+            canIAffordTA.setText("");
         }
 
     }//GEN-LAST:event_utilitiesTFCaretUpdate
 
     private void lifeOfLoanTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_lifeOfLoanTFCaretUpdate
 
-        if(calc.determineIfNumber(housePriceTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
+        if(calc.determineIfNumber(housePriceTF.getText(), downPaymentTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
 
-            double downPayment = calc.getDownPayment(housePriceTF.getText());
+            double downPayment = calc.getDownPayment(housePriceTF.getText(), downPaymentTF.getText());
             downPaymentLBL.setText(money.format(downPayment));
             loanAmountLBL.setText(money.format(calc.getLoanAmount(housePriceTF.getText(), downPayment)));
             paymentPerPeriodLBL.setText(money.format(calc.getPaymentPerPeriod(Integer.parseInt(lifeOfLoanTF.getText()), Integer.parseInt(numberOfPaymentsPerYearLBL.getText()), Double.parseDouble(annualInterestRateTF.getText().replace("$", "").replace(",", "")), Double.parseDouble(loanAmountLBL.getText().replace("$", "").replace(",", "")))));
@@ -619,23 +671,33 @@ public class Calculator extends javax.swing.JFrame {
             totalNetLBL.setText(money.format(calc.getTotalNetIncome(Double.parseDouble(totalGrossLBL.getText().replace("$", "").replace(",", "")))));
             monthlyNetLBL.setText(money.format(Double.parseDouble(totalNetLBL.getText().replace("$", "").replace(",", "")) / 12));
             
-            double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
-            double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+            if(Double.parseDouble(person1IncomeTF.getText()) > 0 || Double.parseDouble(person2IncomeTF.getText()) > 0){
             
-            if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+                double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+                double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+
+                if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+
+                    canIAffordItLBL.setText("Yes");
+                    canIAffordTA.setText("You can afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
+                }
+                else{
+                    canIAffordItLBL.setText("No");
+                    canIAffordTA.setText("You can't afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
+                    + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                }
                 
-                canIAffordItLBL.setText("Yes");
-                canIAffordTA.setText("You can afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
             }
             else{
-                canIAffordItLBL.setText("No");
-                canIAffordTA.setText("You can't afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
-                + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                canIAffordItLBL.setText("Maybe?!?");
+                canIAffordTA.setText("");
             }
+            
+            createMortgageReportButton.setEnabled(true);
             
         }
         else{
@@ -649,15 +711,18 @@ public class Calculator extends javax.swing.JFrame {
             totalGrossLBL.setText("ERROR");
             totalNetLBL.setText("ERROR");
             monthlyNetLBL.setText("ERROR");
+            createMortgageReportButton.setEnabled(false);
+            canIAffordItLBL.setText("Maybe?!?");
+            canIAffordTA.setText("");
         }
 
     }//GEN-LAST:event_lifeOfLoanTFCaretUpdate
 
     private void annualInterestRateTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_annualInterestRateTFCaretUpdate
 
-        if(calc.determineIfNumber(housePriceTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
+        if(calc.determineIfNumber(housePriceTF.getText(), downPaymentTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
 
-            double downPayment = calc.getDownPayment(housePriceTF.getText());
+            double downPayment = calc.getDownPayment(housePriceTF.getText(), downPaymentTF.getText());
             downPaymentLBL.setText(money.format(downPayment));
             loanAmountLBL.setText(money.format(calc.getLoanAmount(housePriceTF.getText(), downPayment)));
             paymentPerPeriodLBL.setText(money.format(calc.getPaymentPerPeriod(Integer.parseInt(lifeOfLoanTF.getText()), Integer.parseInt(numberOfPaymentsPerYearLBL.getText()), Double.parseDouble(annualInterestRateTF.getText().replace("$", "").replace(",", "")), Double.parseDouble(loanAmountLBL.getText().replace("$", "").replace(",", "")))));
@@ -669,23 +734,33 @@ public class Calculator extends javax.swing.JFrame {
             totalNetLBL.setText(money.format(calc.getTotalNetIncome(Double.parseDouble(totalGrossLBL.getText().replace("$", "").replace(",", "")))));
             monthlyNetLBL.setText(money.format(Double.parseDouble(totalNetLBL.getText().replace("$", "").replace(",", "")) / 12));
             
-            double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
-            double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+            if(Double.parseDouble(person1IncomeTF.getText()) > 0 || Double.parseDouble(person2IncomeTF.getText()) > 0){
             
-            if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+                double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+                double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+
+                if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+
+                    canIAffordItLBL.setText("Yes");
+                    canIAffordTA.setText("You can afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
+                }
+                else{
+                    canIAffordItLBL.setText("No");
+                    canIAffordTA.setText("You can't afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
+                    + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                }
                 
-                canIAffordItLBL.setText("Yes");
-                canIAffordTA.setText("You can afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
             }
             else{
-                canIAffordItLBL.setText("No");
-                canIAffordTA.setText("You can't afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
-                + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                canIAffordItLBL.setText("Maybe?!?");
+                canIAffordTA.setText("");
             }
+            
+            createMortgageReportButton.setEnabled(true);
             
         }
         else{
@@ -699,15 +774,18 @@ public class Calculator extends javax.swing.JFrame {
             totalGrossLBL.setText("ERROR");
             totalNetLBL.setText("ERROR");
             monthlyNetLBL.setText("ERROR");
+            createMortgageReportButton.setEnabled(false);
+            canIAffordItLBL.setText("Maybe?!?");
+            canIAffordTA.setText("");
         }
 
     }//GEN-LAST:event_annualInterestRateTFCaretUpdate
 
     private void housePriceTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_housePriceTFCaretUpdate
 
-        if(calc.determineIfNumber(housePriceTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
+        if(calc.determineIfNumber(housePriceTF.getText(), downPaymentTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
 
-            double downPayment = calc.getDownPayment(housePriceTF.getText());
+            double downPayment = calc.getDownPayment(housePriceTF.getText(), downPaymentTF.getText());
             downPaymentLBL.setText(money.format(downPayment));
             loanAmountLBL.setText(money.format(calc.getLoanAmount(housePriceTF.getText(), downPayment)));
             paymentPerPeriodLBL.setText(money.format(calc.getPaymentPerPeriod(Integer.parseInt(lifeOfLoanTF.getText()), Integer.parseInt(numberOfPaymentsPerYearLBL.getText()), Double.parseDouble(annualInterestRateTF.getText().replace("$", "").replace(",", "")), Double.parseDouble(loanAmountLBL.getText().replace("$", "").replace(",", "")))));
@@ -719,23 +797,33 @@ public class Calculator extends javax.swing.JFrame {
             totalNetLBL.setText(money.format(calc.getTotalNetIncome(Double.parseDouble(totalGrossLBL.getText().replace("$", "").replace(",", "")))));
             monthlyNetLBL.setText(money.format(Double.parseDouble(totalNetLBL.getText().replace("$", "").replace(",", "")) / 12));
             
-            double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
-            double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+            if(Double.parseDouble(person1IncomeTF.getText()) > 0 || Double.parseDouble(person2IncomeTF.getText()) > 0){
             
-            if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+                double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+                double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+
+                if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+
+                    canIAffordItLBL.setText("Yes");
+                    canIAffordTA.setText("You can afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
+                }
+                else{
+                    canIAffordItLBL.setText("No");
+                    canIAffordTA.setText("You can't afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
+                    + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                }
                 
-                canIAffordItLBL.setText("Yes");
-                canIAffordTA.setText("You can afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
             }
             else{
-                canIAffordItLBL.setText("No");
-                canIAffordTA.setText("You can't afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
-                + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                canIAffordItLBL.setText("Maybe?!?");
+                canIAffordTA.setText("");
             }
+            
+            createMortgageReportButton.setEnabled(true);
             
         }
         else{
@@ -749,15 +837,18 @@ public class Calculator extends javax.swing.JFrame {
             totalGrossLBL.setText("ERROR");
             totalNetLBL.setText("ERROR");
             monthlyNetLBL.setText("ERROR");
+            createMortgageReportButton.setEnabled(false);
+            canIAffordItLBL.setText("Maybe?!?");
+            canIAffordTA.setText("");
         }
 
     }//GEN-LAST:event_housePriceTFCaretUpdate
 
     private void HOATFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_HOATFCaretUpdate
 
-        if(calc.determineIfNumber(housePriceTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
+        if(calc.determineIfNumber(housePriceTF.getText(), downPaymentTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
 
-            double downPayment = calc.getDownPayment(housePriceTF.getText());
+            double downPayment = calc.getDownPayment(housePriceTF.getText(), downPaymentTF.getText());
             downPaymentLBL.setText(money.format(downPayment));
             loanAmountLBL.setText(money.format(calc.getLoanAmount(housePriceTF.getText(), downPayment)));
             paymentPerPeriodLBL.setText(money.format(calc.getPaymentPerPeriod(Integer.parseInt(lifeOfLoanTF.getText()), Integer.parseInt(numberOfPaymentsPerYearLBL.getText()), Double.parseDouble(annualInterestRateTF.getText().replace("$", "").replace(",", "")), Double.parseDouble(loanAmountLBL.getText().replace("$", "").replace(",", "")))));
@@ -769,23 +860,33 @@ public class Calculator extends javax.swing.JFrame {
             totalNetLBL.setText(money.format(calc.getTotalNetIncome(Double.parseDouble(totalGrossLBL.getText().replace("$", "").replace(",", "")))));
             monthlyNetLBL.setText(money.format(Double.parseDouble(totalNetLBL.getText().replace("$", "").replace(",", "")) / 12));
             
-            double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
-            double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+            if(Double.parseDouble(person1IncomeTF.getText()) > 0 || Double.parseDouble(person2IncomeTF.getText()) > 0){
             
-            if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+                double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+                double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+
+                if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+
+                    canIAffordItLBL.setText("Yes");
+                    canIAffordTA.setText("You can afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
+                }
+                else{
+                    canIAffordItLBL.setText("No");
+                    canIAffordTA.setText("You can't afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
+                    + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                }
                 
-                canIAffordItLBL.setText("Yes");
-                canIAffordTA.setText("You can afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
             }
             else{
-                canIAffordItLBL.setText("No");
-                canIAffordTA.setText("You can't afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
-                + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                canIAffordItLBL.setText("Maybe?!?");
+                canIAffordTA.setText("");
             }
+            
+            createMortgageReportButton.setEnabled(true);
             
         }
         else{
@@ -799,15 +900,18 @@ public class Calculator extends javax.swing.JFrame {
             totalGrossLBL.setText("ERROR");
             totalNetLBL.setText("ERROR");
             monthlyNetLBL.setText("ERROR");
+            createMortgageReportButton.setEnabled(false);
+            canIAffordItLBL.setText("Maybe?!?");
+            canIAffordTA.setText("");
         }
 
     }//GEN-LAST:event_HOATFCaretUpdate
 
     private void insuranceTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_insuranceTFCaretUpdate
 
-        if(calc.determineIfNumber(housePriceTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
+        if(calc.determineIfNumber(housePriceTF.getText(), downPaymentTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
 
-            double downPayment = calc.getDownPayment(housePriceTF.getText());
+            double downPayment = calc.getDownPayment(housePriceTF.getText(), downPaymentTF.getText());
             downPaymentLBL.setText(money.format(downPayment));
             loanAmountLBL.setText(money.format(calc.getLoanAmount(housePriceTF.getText(), downPayment)));
             paymentPerPeriodLBL.setText(money.format(calc.getPaymentPerPeriod(Integer.parseInt(lifeOfLoanTF.getText()), Integer.parseInt(numberOfPaymentsPerYearLBL.getText()), Double.parseDouble(annualInterestRateTF.getText().replace("$", "").replace(",", "")), Double.parseDouble(loanAmountLBL.getText().replace("$", "").replace(",", "")))));
@@ -819,23 +923,33 @@ public class Calculator extends javax.swing.JFrame {
             totalNetLBL.setText(money.format(calc.getTotalNetIncome(Double.parseDouble(totalGrossLBL.getText().replace("$", "").replace(",", "")))));
             monthlyNetLBL.setText(money.format(Double.parseDouble(totalNetLBL.getText().replace("$", "").replace(",", "")) / 12));
             
-            double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
-            double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+            if(Double.parseDouble(person1IncomeTF.getText()) > 0 || Double.parseDouble(person2IncomeTF.getText()) > 0){
             
-            if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+                double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+                double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+
+                if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+
+                    canIAffordItLBL.setText("Yes");
+                    canIAffordTA.setText("You can afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
+                }
+                else{
+                    canIAffordItLBL.setText("No");
+                    canIAffordTA.setText("You can't afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
+                    + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                }
                 
-                canIAffordItLBL.setText("Yes");
-                canIAffordTA.setText("You can afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
             }
             else{
-                canIAffordItLBL.setText("No");
-                canIAffordTA.setText("You can't afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
-                + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                canIAffordItLBL.setText("Maybe?!?");
+                canIAffordTA.setText("");
             }
+            
+            createMortgageReportButton.setEnabled(true);
             
         }
         else{
@@ -849,15 +963,18 @@ public class Calculator extends javax.swing.JFrame {
             totalGrossLBL.setText("ERROR");
             totalNetLBL.setText("ERROR");
             monthlyNetLBL.setText("ERROR");
+            createMortgageReportButton.setEnabled(false);
+            canIAffordItLBL.setText("Maybe?!?");
+            canIAffordTA.setText("");
         }
 
     }//GEN-LAST:event_insuranceTFCaretUpdate
 
     private void taxesTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_taxesTFCaretUpdate
 
-        if(calc.determineIfNumber(housePriceTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
+        if(calc.determineIfNumber(housePriceTF.getText(), downPaymentTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
 
-            double downPayment = calc.getDownPayment(housePriceTF.getText());
+            double downPayment = calc.getDownPayment(housePriceTF.getText(), downPaymentTF.getText());
             downPaymentLBL.setText(money.format(downPayment));
             loanAmountLBL.setText(money.format(calc.getLoanAmount(housePriceTF.getText(), downPayment)));
             paymentPerPeriodLBL.setText(money.format(calc.getPaymentPerPeriod(Integer.parseInt(lifeOfLoanTF.getText()), Integer.parseInt(numberOfPaymentsPerYearLBL.getText()), Double.parseDouble(annualInterestRateTF.getText().replace("$", "").replace(",", "")), Double.parseDouble(loanAmountLBL.getText().replace("$", "").replace(",", "")))));
@@ -869,23 +986,33 @@ public class Calculator extends javax.swing.JFrame {
             totalNetLBL.setText(money.format(calc.getTotalNetIncome(Double.parseDouble(totalGrossLBL.getText().replace("$", "").replace(",", "")))));
             monthlyNetLBL.setText(money.format(Double.parseDouble(totalNetLBL.getText().replace("$", "").replace(",", "")) / 12));
             
-            double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
-            double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+            if(Double.parseDouble(person1IncomeTF.getText()) > 0 || Double.parseDouble(person2IncomeTF.getText()) > 0){
             
-            if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+                double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+                double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+
+                if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+
+                    canIAffordItLBL.setText("Yes");
+                    canIAffordTA.setText("You can afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
+                }
+                else{
+                    canIAffordItLBL.setText("No");
+                    canIAffordTA.setText("You can't afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
+                    + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                }
                 
-                canIAffordItLBL.setText("Yes");
-                canIAffordTA.setText("You can afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
             }
             else{
-                canIAffordItLBL.setText("No");
-                canIAffordTA.setText("You can't afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
-                + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                canIAffordItLBL.setText("Maybe?!?");
+                canIAffordTA.setText("");
             }
+            
+            createMortgageReportButton.setEnabled(true);
             
         }
         else{
@@ -899,15 +1026,18 @@ public class Calculator extends javax.swing.JFrame {
             totalGrossLBL.setText("ERROR");
             totalNetLBL.setText("ERROR");
             monthlyNetLBL.setText("ERROR");
+            createMortgageReportButton.setEnabled(false);
+            canIAffordItLBL.setText("Maybe?!?");
+            canIAffordTA.setText("");
         }
 
     }//GEN-LAST:event_taxesTFCaretUpdate
 
     private void person1IncomeTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_person1IncomeTFCaretUpdate
         
-        if(calc.determineIfNumber(housePriceTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
+        if(calc.determineIfNumber(housePriceTF.getText(), downPaymentTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
 
-            double downPayment = calc.getDownPayment(housePriceTF.getText());
+            double downPayment = calc.getDownPayment(housePriceTF.getText(), downPaymentTF.getText());
             downPaymentLBL.setText(money.format(downPayment));
             loanAmountLBL.setText(money.format(calc.getLoanAmount(housePriceTF.getText(), downPayment)));
             paymentPerPeriodLBL.setText(money.format(calc.getPaymentPerPeriod(Integer.parseInt(lifeOfLoanTF.getText()), Integer.parseInt(numberOfPaymentsPerYearLBL.getText()), Double.parseDouble(annualInterestRateTF.getText().replace("$", "").replace(",", "")), Double.parseDouble(loanAmountLBL.getText().replace("$", "").replace(",", "")))));
@@ -919,23 +1049,33 @@ public class Calculator extends javax.swing.JFrame {
             totalNetLBL.setText(money.format(calc.getTotalNetIncome(Double.parseDouble(totalGrossLBL.getText().replace("$", "").replace(",", "")))));
             monthlyNetLBL.setText(money.format(Double.parseDouble(totalNetLBL.getText().replace("$", "").replace(",", "")) / 12));
             
-            double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
-            double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+            if(Double.parseDouble(person1IncomeTF.getText()) > 0 || Double.parseDouble(person2IncomeTF.getText()) > 0){
             
-            if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+                double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+                double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+
+                if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+
+                    canIAffordItLBL.setText("Yes");
+                    canIAffordTA.setText("You can afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
+                }
+                else{
+                    canIAffordItLBL.setText("No");
+                    canIAffordTA.setText("You can't afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
+                    + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                }
                 
-                canIAffordItLBL.setText("Yes");
-                canIAffordTA.setText("You can afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
             }
             else{
-                canIAffordItLBL.setText("No");
-                canIAffordTA.setText("You can't afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
-                + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                canIAffordItLBL.setText("Maybe?!?");
+                canIAffordTA.setText("");
             }
+            
+            createMortgageReportButton.setEnabled(true);
             
         }
         else{
@@ -949,15 +1089,18 @@ public class Calculator extends javax.swing.JFrame {
             totalGrossLBL.setText("ERROR");
             totalNetLBL.setText("ERROR");
             monthlyNetLBL.setText("ERROR");
+            createMortgageReportButton.setEnabled(false);
+            canIAffordItLBL.setText("Maybe?!?");
+            canIAffordTA.setText("");
         }
         
     }//GEN-LAST:event_person1IncomeTFCaretUpdate
 
     private void person2IncomeTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_person2IncomeTFCaretUpdate
         
-        if(calc.determineIfNumber(housePriceTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
+        if(calc.determineIfNumber(housePriceTF.getText(), downPaymentTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
 
-            double downPayment = calc.getDownPayment(housePriceTF.getText());
+            double downPayment = calc.getDownPayment(housePriceTF.getText(), downPaymentTF.getText());
             downPaymentLBL.setText(money.format(downPayment));
             loanAmountLBL.setText(money.format(calc.getLoanAmount(housePriceTF.getText(), downPayment)));
             paymentPerPeriodLBL.setText(money.format(calc.getPaymentPerPeriod(Integer.parseInt(lifeOfLoanTF.getText()), Integer.parseInt(numberOfPaymentsPerYearLBL.getText()), Double.parseDouble(annualInterestRateTF.getText().replace("$", "").replace(",", "")), Double.parseDouble(loanAmountLBL.getText().replace("$", "").replace(",", "")))));
@@ -969,23 +1112,33 @@ public class Calculator extends javax.swing.JFrame {
             totalNetLBL.setText(money.format(calc.getTotalNetIncome(Double.parseDouble(totalGrossLBL.getText().replace("$", "").replace(",", "")))));
             monthlyNetLBL.setText(money.format(Double.parseDouble(totalNetLBL.getText().replace("$", "").replace(",", "")) / 12));
             
-            double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
-            double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+            if(Double.parseDouble(person1IncomeTF.getText()) > 0 || Double.parseDouble(person2IncomeTF.getText()) > 0){
             
-            if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+                double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+                double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+
+                if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+
+                    canIAffordItLBL.setText("Yes");
+                    canIAffordTA.setText("You can afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
+                }
+                else{
+                    canIAffordItLBL.setText("No");
+                    canIAffordTA.setText("You can't afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
+                    + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                }
                 
-                canIAffordItLBL.setText("Yes");
-                canIAffordTA.setText("You can afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
             }
             else{
-                canIAffordItLBL.setText("No");
-                canIAffordTA.setText("You can't afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
-                + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                canIAffordItLBL.setText("Maybe?!?");
+                canIAffordTA.setText("");
             }
+            
+            createMortgageReportButton.setEnabled(true);
             
         }
         else{
@@ -999,15 +1152,18 @@ public class Calculator extends javax.swing.JFrame {
             totalGrossLBL.setText("ERROR");
             totalNetLBL.setText("ERROR");
             monthlyNetLBL.setText("ERROR");
+            createMortgageReportButton.setEnabled(false);
+            canIAffordItLBL.setText("Maybe?!?");
+            canIAffordTA.setText("");
         }
         
     }//GEN-LAST:event_person2IncomeTFCaretUpdate
 
     private void extraIncomeTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_extraIncomeTFCaretUpdate
         
-        if(calc.determineIfNumber(housePriceTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
+        if(calc.determineIfNumber(housePriceTF.getText(), downPaymentTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
 
-            double downPayment = calc.getDownPayment(housePriceTF.getText());
+            double downPayment = calc.getDownPayment(housePriceTF.getText(), downPaymentTF.getText());
             downPaymentLBL.setText(money.format(downPayment));
             loanAmountLBL.setText(money.format(calc.getLoanAmount(housePriceTF.getText(), downPayment)));
             paymentPerPeriodLBL.setText(money.format(calc.getPaymentPerPeriod(Integer.parseInt(lifeOfLoanTF.getText()), Integer.parseInt(numberOfPaymentsPerYearLBL.getText()), Double.parseDouble(annualInterestRateTF.getText().replace("$", "").replace(",", "")), Double.parseDouble(loanAmountLBL.getText().replace("$", "").replace(",", "")))));
@@ -1019,23 +1175,33 @@ public class Calculator extends javax.swing.JFrame {
             totalNetLBL.setText(money.format(calc.getTotalNetIncome(Double.parseDouble(totalGrossLBL.getText().replace("$", "").replace(",", "")))));
             monthlyNetLBL.setText(money.format(Double.parseDouble(totalNetLBL.getText().replace("$", "").replace(",", "")) / 12));
             
-            double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
-            double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+            if(Double.parseDouble(person1IncomeTF.getText()) > 0 || Double.parseDouble(person2IncomeTF.getText()) > 0){
             
-            if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
-                                
-                canIAffordItLBL.setText("Yes");
-                canIAffordTA.setText("You can afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
+                double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+                double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+
+                if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+
+                    canIAffordItLBL.setText("Yes");
+                    canIAffordTA.setText("You can afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
+                }
+                else{
+                    canIAffordItLBL.setText("No");
+                    canIAffordTA.setText("You can't afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
+                    + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                }
+                
             }
             else{
-                canIAffordItLBL.setText("No");
-                canIAffordTA.setText("You can't afford this mortgage.\n"
-                + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
-                + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
-                + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                canIAffordItLBL.setText("Maybe?!?");
+                canIAffordTA.setText("");
             }
+            
+            createMortgageReportButton.setEnabled(true);
             
         }
         else{
@@ -1049,9 +1215,82 @@ public class Calculator extends javax.swing.JFrame {
             totalGrossLBL.setText("ERROR");
             totalNetLBL.setText("ERROR");
             monthlyNetLBL.setText("ERROR");
+            createMortgageReportButton.setEnabled(false);
+            canIAffordItLBL.setText("Maybe?!?");
+            canIAffordTA.setText("");
         }
         
     }//GEN-LAST:event_extraIncomeTFCaretUpdate
+
+    private void createMortgageReportButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createMortgageReportButtonActionPerformed
+
+        MortgageReport mr = new MortgageReport();
+        mr.createReport(Double.parseDouble(loanAmountLBL.getText().replace("$", "").replace(",", "")), Double.parseDouble(annualInterestRateTF.getText()) / 100, Integer.parseInt(lifeOfLoanTF.getText()), Double.parseDouble(paymentPerPeriodLBL.getText().replace("$", "").replace(",", "")));
+        
+    }//GEN-LAST:event_createMortgageReportButtonActionPerformed
+
+    private void downPaymentTFCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_downPaymentTFCaretUpdate
+        
+        if(calc.determineIfNumber(housePriceTF.getText(), downPaymentTF.getText(), annualInterestRateTF.getText(), lifeOfLoanTF.getText(), utilitiesTF.getText(), taxesTF.getText(), insuranceTF.getText(), HOATF.getText(), person1IncomeTF.getText(), person2IncomeTF.getText(), extraIncomeTF.getText())){
+
+            double downPayment = calc.getDownPayment(housePriceTF.getText(), downPaymentTF.getText());
+            downPaymentLBL.setText(money.format(downPayment));
+            loanAmountLBL.setText(money.format(calc.getLoanAmount(housePriceTF.getText(), downPayment)));
+            paymentPerPeriodLBL.setText(money.format(calc.getPaymentPerPeriod(Integer.parseInt(lifeOfLoanTF.getText()), Integer.parseInt(numberOfPaymentsPerYearLBL.getText()), Double.parseDouble(annualInterestRateTF.getText().replace("$", "").replace(",", "")), Double.parseDouble(loanAmountLBL.getText().replace("$", "").replace(",", "")))));
+            sumOfPaymentsLBL.setText(money.format(calc.getSumOfPayments(Double.parseDouble(paymentPerPeriodLBL.getText().replace("$", "").replace(",", "")), Integer.parseInt(lifeOfLoanTF.getText()), Integer.parseInt(numberOfPaymentsPerYearLBL.getText()))));
+            interestCostLBL.setText(money.format(calc.getInterestCost(Double.parseDouble(sumOfPaymentsLBL.getText().replace("$", "").replace(",", "")), Double.parseDouble(loanAmountLBL.getText().replace("$", "").replace(",", "")))));
+            totalLBL.setText(money.format(calc.getTotalMonthlyMortgage(Double.parseDouble(paymentPerPeriodLBL.getText().replace("$", "").replace(",", "")), Double.parseDouble(insuranceTF.getText()), Double.parseDouble(taxesTF.getText()), Double.parseDouble(HOATF.getText()))));
+            totalUtilLBL.setText(money.format(Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) + Double.parseDouble(utilitiesTF.getText().replace("$", "").replace(",", ""))));
+            totalGrossLBL.setText(money.format(calc.getGrossIncome(Double.parseDouble(person1IncomeTF.getText()), Double.parseDouble(person2IncomeTF.getText()), Double.parseDouble(extraIncomeTF.getText()))));
+            totalNetLBL.setText(money.format(calc.getTotalNetIncome(Double.parseDouble(totalGrossLBL.getText().replace("$", "").replace(",", "")))));
+            monthlyNetLBL.setText(money.format(Double.parseDouble(totalNetLBL.getText().replace("$", "").replace(",", "")) / 12));
+            
+            if(Double.parseDouble(person1IncomeTF.getText()) > 0 || Double.parseDouble(person2IncomeTF.getText()) > 0){
+            
+                double mortgagePercentIncome = Double.parseDouble(totalLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+                double utilMortgagePercentIncome = Double.parseDouble(totalUtilLBL.getText().replace("$", "").replace(",", "")) / Double.parseDouble(monthlyNetLBL.getText().replace("$", "").replace(",", ""));
+
+                if(mortgagePercentIncome < 0.29 && utilMortgagePercentIncome < 0.29){
+
+                    canIAffordItLBL.setText("Yes");
+                    canIAffordTA.setText("You can afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.");
+                }
+                else{
+                    canIAffordItLBL.setText("No");
+                    canIAffordTA.setText("You can't afford this mortgage.\n"
+                    + "Your mortgage would take up " + percentFormat.format(mortgagePercentIncome) + " of your pre utilities payment.\n"
+                    + "Your mortgage would take up " + percentFormat.format(utilMortgagePercentIncome) + " of your post utilities payment.\n"
+                    + "It is recomended to have a mortgage of 28%  or less of your net income.");
+                }
+                
+            }
+            else{
+                canIAffordItLBL.setText("Maybe?!?");
+                canIAffordTA.setText("");
+            }
+            
+            createMortgageReportButton.setEnabled(true);
+            
+        }
+        else{
+            downPaymentLBL.setText("ERROR");
+            loanAmountLBL.setText("ERROR");
+            paymentPerPeriodLBL.setText("ERROR");
+            sumOfPaymentsLBL.setText("ERROR");
+            interestCostLBL.setText("ERROR");
+            totalLBL.setText("ERROR");
+            totalUtilLBL.setText("ERROR");
+            totalGrossLBL.setText("ERROR");
+            totalNetLBL.setText("ERROR");
+            monthlyNetLBL.setText("ERROR");
+            createMortgageReportButton.setEnabled(false);
+            canIAffordItLBL.setText("Maybe?!?");
+            canIAffordTA.setText("");
+        }
+        
+    }//GEN-LAST:event_downPaymentTFCaretUpdate
 
     /**
      * @param args the command line arguments
@@ -1093,7 +1332,9 @@ public class Calculator extends javax.swing.JFrame {
     private javax.swing.JTextField annualInterestRateTF;
     private javax.swing.JLabel canIAffordItLBL;
     private javax.swing.JTextArea canIAffordTA;
+    private javax.swing.JButton createMortgageReportButton;
     private javax.swing.JLabel downPaymentLBL;
+    private javax.swing.JTextField downPaymentTF;
     private javax.swing.JTextField extraIncomeTF;
     private javax.swing.JTextField housePriceTF;
     private javax.swing.JTextField insuranceTF;
@@ -1112,6 +1353,7 @@ public class Calculator extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
